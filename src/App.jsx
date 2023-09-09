@@ -1,10 +1,10 @@
-import { useState } from 'react'
-import './App.css'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-
+import { Button } from "@chakra-ui/react";
+import { useState } from "react";
+import "./App.css";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
@@ -28,9 +28,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+      <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <button className="btn">Button</button>
       <button className="btn btn-neutral">Neutral</button>
       <button className="btn btn-primary">Primary</button>
@@ -38,8 +36,9 @@ function App() {
       <button className="btn btn-accent">Accent</button>
       <button className="btn btn-ghost">Ghost</button>
       <button className="btn btn-link">Link</button>
+      <Button colorScheme="blue">Button</Button>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -20,9 +20,14 @@ body {
   box-sizing: border-box;
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Berkshire Swash", cursive;
-  font-size: 3.2em;
+  /* font-size: 3.2em; */
   line-height: 1.1;
 }
 
