@@ -1,1 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap");
+
+.drawer-side a.active {
+  color: #fff;
+}
+.drawer-side a {
+  background-color: transparent !important;
+}

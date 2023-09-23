@@ -1,5 +1,5 @@
 import { Rating } from "@smastrom/react-rating";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SectionTitle from "../../components/SectionTitle";
 

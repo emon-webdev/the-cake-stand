@@ -8,18 +8,18 @@ import {
 } from "react-simple-captcha";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
+import SocialLogin from "../Shared/SocialLogin";
 // A1!emon@gamil.com
 // Aemon123@gamil.com
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
-  const navigate = useNavigate();
   const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
   const location = useLocation()
-
   const from = location.state?.from?.pathname || "/"
 
   useEffect(() => {
-    loadCaptchaEnginge(6);
+    loadCaptchaEnginge(4);
   }, []);
 
   const handleLogin = (event) => {
@@ -112,7 +112,7 @@ const Login = () => {
               </div>
               <div className="form-control mt-6">
                 <input
-                  disabled={disabled}
+                  // disabled={disabled}
                   className="btn btn-primary"
                   type="submit"
                   value="Sign In"
@@ -125,6 +125,7 @@ const Login = () => {
                   New Here? <Link to="/signup">Create an new account</Link>
                 </small>
               </p>
+              <SocialLogin/>
             </div>
           </div>
         </div>
