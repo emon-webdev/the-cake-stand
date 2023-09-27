@@ -32,8 +32,7 @@ const MyCart = () => {
                                 'success'
                             )
                         }
-                    }
-                    )
+                    })
             }
         })
     };

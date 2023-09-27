@@ -16,6 +16,7 @@ const SignUp = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/"
+
   const onSubmit = data => {
     createUser(data.email, data.password)
       .then(result => {
@@ -53,11 +54,13 @@ const SignUp = () => {
               showConfirmButton: false,
               timer: 1500
             });
-            navigate(from, { replace: true });
+            // navigate(from, { replace: true });
           })
           .catch(error => console.log(error))
       })
   };
+
+
 
 
   return (
