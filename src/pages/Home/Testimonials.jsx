@@ -19,25 +19,26 @@ const Testimonials = () => {
   }, []);
   return (
     <section className="my-16">
-      <SectionTitle subHeading="What Our client Say?" heading="Testimonials" />
-      {reviews?.length}
-      <>
-        <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-          {reviews?.map((review) => (
-            <SwiperSlide key={review?._id}>
-              <div className="flex flex-col text-center items-center mx-24 my-16">
-                <Rating
-                  style={{ maxWidth: 180 }}
-                  value={review?.rating}
-                  readOnly
-                />
-                <p>{review?.details}</p>
-                <h3>{review?.name}</h3>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </>
+      <div className="container">
+        <SectionTitle subHeading="What Our client Say?" heading="Testimonials" />
+        <>
+          <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+            {reviews?.map((review) => (
+              <SwiperSlide key={review?._id}>
+                <div className="flex flex-col text-center items-center px-4 py-8 md:px-16">
+                  <Rating
+                    style={{ maxWidth: 180 }}
+                    value={review?.rating}
+                    readOnly
+                  />
+                  <p className="my-4">{review?.details}</p>
+                  <h3 className="text-[#ffc222]">{review?.name}</h3>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </>
+      </div>
     </section>
   );
 };

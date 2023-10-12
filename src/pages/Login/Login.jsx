@@ -1,26 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import {
-  LoadCanvasTemplate,
-  loadCaptchaEnginge,
-  validateCaptcha,
-} from "react-simple-captcha";
 import Swal from "sweetalert2";
+import bg from '../../assets/login.jpg';
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../Shared/SocialLogin";
 // A1!emon@gamil.com
 // Aemon123@gamil.com
 const Login = () => {
-  const [disabled, setDisabled] = useState(true);
+  // const [disabled, setDisabled] = useState(true);
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation()
   const from = location.state?.from?.pathname || "/"
-
-  useEffect(() => {
-    loadCaptchaEnginge(4);
-  }, []);
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -42,90 +34,79 @@ const Login = () => {
         },
       });
       navigate(from, { replace: true });
+
     });
   };
 
-  const handleValidateCaptcha = (e) => {
-    const user_captcha_value = e.target.value;
-    if (validateCaptcha(user_captcha_value)) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-  };
 
   return (
     <>
       <Helmet>
         <title>THE CAKE STAND || Sign In</title>
       </Helmet>
-      <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex">
-          <div className="text-center md:w-1/2 lg:text-left">
-            <h1 className="text-5xl font-bold">Login now!</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
-          </div>
-          <div className="card md:w-1/2 w-full max-w-sm shadow-2xl bg-base-100">
-            <form onSubmit={handleLogin} className="card-body">
-              <div className="form-control">
+      {/* <InnerBanner title="Login" colorTitle="Now" /> */}
+      <div
+        className="hero min-h-screen bg-base-200"
+        style={{
+          backgroundImage: `url(${bg})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="">
+          <div className="rounded-3xl px-[35px] md:px-[85px] md:py-[60px] py-[40px] md:w-[620px] w-[380px] border border-[#888888] shadow-2xl bg-[#141414]">
+            <div className="text-center text-white">
+              <h1 className="md:text-5xl text-4xl font-bold">Login <span className="text-[#ffc222]">now!</span></h1>
+              <p className="py-6">
+                Hey, Enter your details to get sign in to your account
+              </p>
+            </div>
+            <form onSubmit={handleLogin} className="text-white">
+              <div className="form-control mb-2">
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <span className="label-text text-white">Email</span>
                 </label>
                 <input
                   name="email"
                   type="text"
                   placeholder="email"
-                  className="input input-bordered"
+                  className="input input-bordered w-full text-black bg-[#e7e8e8]"
                 />
               </div>
-              <div className="form-control">
+              <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text text-white">Password</span>
                 </label>
                 <input
                   name="password"
                   type="text"
                   placeholder="password"
-                  className="input input-bordered"
+                  className="input input-bordered w-full text-black bg-[#e7e8e8]"
                 />
               </div>
-              <div className="form-control">
-                <label className="label">
-                  <LoadCanvasTemplate />
-                </label>
-                <input
-                  onBlur={handleValidateCaptcha}
-                  name="captcha"
-                  type="text"
-                  placeholder="type the captcha above"
-                  className="input input-bordered"
-                />
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
-              </div>
+
               <div className="form-control mt-6">
                 <input
-                  // disabled={disabled}
-                  className="btn btn-primary"
+                  className="btn bg-[#ffc222] "
                   type="submit"
                   value="Sign In"
                 />
               </div>
             </form>
             <div>
-              <p>
+              <p className="text-center mt-6 text-white">
                 <small>
-                  New Here? <Link to="/signup">Create an new account</Link>
+                  You don`t have an account then
+                  <Link
+                    className="text-[#ffc222] mx-1"
+                    to="/signup">
+                    Sing Up
+                  </Link>
+                  now
                 </small>
               </p>
-              <SocialLogin/>
+              <SocialLogin />
             </div>
           </div>
         </div>
@@ -135,3 +116,52 @@ const Login = () => {
 };
 
 export default Login;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const handleValidateCaptcha = (e) => {
+//   const user_captcha_value = e.target.value;
+//   if (validateCaptcha(user_captcha_value)) {
+//     setDisabled(false);
+//   } else {
+//     setDisabled(true);
+//   }
+// };
+// useEffect(() => {
+//   loadCaptchaEnginge(4);
+// }, []);
+
+{/* <div className="form-control">
+                <label className="label">
+                  <LoadCanvasTemplate />
+                </label>
+                <input
+                  onBlur={handleValidateCaptcha}
+                  name="captcha"
+                  type="text"
+                  placeholder="type the captcha above"
+                  className="input input-bordered w-full"
+                />
+                <label className="label">
+                  <a href="#" className="label-text-alt link link-hover">
+                    Forgot password?
+                  </a>
+                </label>
+              </div> */}

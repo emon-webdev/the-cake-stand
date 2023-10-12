@@ -10,7 +10,7 @@ const useCart = () => {
         enabled: !loading,
         queryFn: async () => {
             const res = await axios(`/carts?email=${user?.email}`)
-            console.log('res from axios', res)
+
             return res.data
         },
     })

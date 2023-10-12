@@ -1,12 +1,15 @@
 import React from "react";
 
-const SectionTitle = ({ heading, subHeading }) => {
+const SectionTitle = ({ heading, colorHeading, subHeading }) => {
   return (
     <div className="text-center">
-      <p className="text-[#D99904]">{subHeading}</p>
-      <h2 className="text-[#151515] text-[40px] font-bold uppercase ">
+      <h2 className="text-[#151515] mb-3 text-[40px] font-bold uppercase ">
         {heading}
+        <span className="text-[#ffc222]">
+          {colorHeading}
+        </span>
       </h2>
+      <p className="text-[#ffc222]">{subHeading} </p>
     </div>
   );
 };

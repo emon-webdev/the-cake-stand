@@ -1,21 +1,55 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 import SectionTitle from '../../../components/SectionTitle';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_Token
-console.log(img_hosting_token)
+
 
 const AddItem = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const [axiosSecure] = useAxiosSecure()
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
+
 
     const onSubmit = data => {
-        console.log(data)
+        const formData = new FormData();
+        formData.append('image', data.image[0]);
+
+        fetch(img_hosting_url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgResponse => {
+                if (imgResponse.success) {
+                    const imgURL = imgResponse.data.display_url
+                    const { name, price, category, recipe } = data;
+                    const newItem = { name, price: parseFloat(price), category, recipe, image: imgURL }
+                    console.log(newItem)
+
+                    axiosSecure.post('/menu', newItem)
+                        .then(data => {
+                            console.log('After posting new menu item', data)
+                            if (data.data.insertedId) {
+                                reset()
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Item added successfully',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                        })
+                }
+            })
     };
-    console.log(errors)
 
     return (
-        <div className='w-full px-10'>
+        <div className='w-full px-10 '>
             <Helmet>
                 <title>THE CAKE STAND || Add Item</title>
             </Helmet>
@@ -39,10 +73,11 @@ const AddItem = () => {
                                 <span className="label-text">Category*</span>
                             </label>
                             <select
+                                defaultValue="Pick One"
                                 {...register("category", { required: true })}
                                 className="select select-bordered"
                             >
-                                <option disabled selected>Pick one</option>
+                                <option disabled >Pick One</option>
                                 <option>Cake</option>
                                 <option>Soup</option>
                                 <option>Pizza</option>

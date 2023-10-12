@@ -1,12 +1,21 @@
 import { Button } from "@chakra-ui/react";
-import { useState } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect, useState } from "react";
 import "./App.css";
 import reactLogo from "./assets/react.svg";
+// Import css files
+import 'react-fancybox/lib/fancybox.css';
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 import viteLogo from "/vite.svg";
 function App() {
   const [count, setCount] = useState(0);
-
+  useEffect(() => {
+    AOS.refresh();
+  }, []);
   return (
+
     <>
       <div>
         <a href="https://vitejs.dev" target="_blank" rel="noreferrer">

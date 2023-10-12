@@ -5,9 +5,10 @@ import { BsCart3, BsFillCalendar2HeartFill } from 'react-icons/bs';
 import { FaBookMedical, FaHospitalUser, FaRegCalendarAlt, FaShopify, FaWallet } from 'react-icons/fa';
 import { GrMailOption } from 'react-icons/gr';
 import { MdReviews } from 'react-icons/md';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
+import logo from "../assets/main-logo.png";
 import useAdmin from '../hooks/useAdmin';
-
+import DashboardNavbar from './DashboardNavbar';
 const Dashboard = () => {
 
     // TODO: load data from the server to have dynamic is admin based
@@ -17,54 +18,61 @@ const Dashboard = () => {
 
     return (
         <div>
+            <DashboardNavbar />
             <div className="drawer lg:drawer-open">
-                <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col items-center justify-center">
+                <input id="open-dashboard" type="checkbox" className="drawer-toggle" />
+                <div className="drawer-content md:ms-10 ms-6 md:py-8 py-6 flex flex-col items-center ">
                     {/* Page content here */}
-                    <Outlet />
-                    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 
+                    {/* <label htmlFor="open-dashboard" className="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
+                    <Outlet />
                 </div>
-                <div className="drawer-side">
-                    <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 min-h-full bg-[#D1A054] text-base-content">
+                <div className="drawer-side md:mt-[-101px]">
+                    <label htmlFor="open-dashboard" className="drawer-overlay"></label>
+                    <ul className="menu p-4 pt-2 w-80 min-h-full bg-[#D1A054] text-base-content">
                         <li>
-                            <NavLink to='/'>
-                                <BiHomeAlt />
-                                <span>The Stand Cake</span>
-                            </NavLink>
+                            <div
+                                data-aos="zoom-in"
+                                data-aos-duration="500"
+                                className="logo mx-auto p-0 hover:bg-transparent ">
+                                <Link to="/" className="text-3xl md:w-[80px] w-14 font-bold flex items-center">
+                                    <img
+                                        className="md:w-[80px] w-14"
+                                        src={logo} alt="" srcSet="" />
+                                </Link>
+                            </div>
                         </li>
-                        <div className="divider"></div>
+                        <div className="divider mt-1"></div>
                         {
                             isAdmin ?
                                 <>
                                     {/* admin links */}
                                     <li>
-                                        <NavLink to='/dashboard'>
+                                        <NavLink to='adminhome'>
                                             <BiHomeAlt />
                                             <span>Admin Home</span>
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/dashboard/allusers'>
+                                        <NavLink to='users'>
                                             <FaHospitalUser />
                                             <span>All Users</span>
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/dashboard/additem'>
+                                        <NavLink to='additem'>
                                             <BiHomeAlt />
                                             <span>Add Items</span>
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/dashboard/manageitem'>
+                                        <NavLink to='manageitems'>
                                             <AiOutlineMenu />
                                             <span>Manage Items</span>
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/dashboard/managebookings'>
+                                        <NavLink to='managebooking'>
                                             <FaBookMedical />
                                             <span>Manage Bookings</span>
                                         </NavLink>
@@ -74,40 +82,40 @@ const Dashboard = () => {
                                 <>
                                     {/* User links */}
                                     <li>
-                                        <NavLink to='/dashboard'>
+                                        <NavLink to='userhome'>
                                             <BiHomeAlt />
                                             <span>User Home</span>
                                         </NavLink>
                                     </li>
 
                                     <li>
-                                        <NavLink to='/dashboard/mycart'>
+                                        <NavLink to='mycart'>
                                             <BsCart3 />
                                             <span>My Cart</span>
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/dashboard/paymenthistory'>
+                                        <NavLink to='paymenthistory'>
                                             <FaWallet />
                                             <span>Payment History</span>
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/dashboard/reservation'>
+                                        <NavLink to='reservation'>
                                             <FaRegCalendarAlt />
                                             <span>Reservation</span>
                                         </NavLink>
                                     </li>
 
                                     <li>
-                                        <NavLink to='/dashboard/addreview'>
+                                        <NavLink to='addreview'>
                                             <MdReviews />
                                             <span>Add Review</span>
                                         </NavLink>
                                     </li>
 
                                     <li>
-                                        <NavLink to='/dashboard/mybooking'>
+                                        <NavLink to='mybooking'>
                                             <BsFillCalendar2HeartFill />
                                             <span>My Booking</span>
                                         </NavLink>
@@ -115,11 +123,6 @@ const Dashboard = () => {
 
                                 </>
                         }
-
-
-
-
-
 
 
 
@@ -137,13 +140,13 @@ const Dashboard = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to='/dashboard/shop'>
+                            <NavLink to='/order/salad'>
                                 <FaShopify />
                                 <span>Shop</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to='/dashboard/mybooking'>
+                            <NavLink to='/contactus'>
                                 <GrMailOption />
                                 <span>Contact</span>
                             </NavLink>

@@ -6,9 +6,9 @@ import { AuthContext } from '../../providers/AuthProvider';
 const SocialLogin = () => {
     const { googleSignIn } = useContext(AuthContext)
 
+    const location = useLocation();
     const navigate = useNavigate();
-    const location = useLocation()
-    const from = location.state?.from?.pathname || "/"
+    const from = location.state?.from?.pathname || "/";
 
 
     const handleGoogleSignIn = () => {
@@ -32,7 +32,9 @@ const SocialLogin = () => {
                 })
                     .then(res => res.json())
                     .then(() => {
+                        console.log('post social ')
                         navigate(from, { replace: true });
+                        // navigate("/");
                     })
             })
     }
@@ -41,7 +43,7 @@ const SocialLogin = () => {
         <div>
             <div className='divider'></div>
             <div className='w-full text-center my-4'>
-                <button onClick={handleGoogleSignIn} className="btn btn-square btn-outline">
+                <button onClick={handleGoogleSignIn} className="btn text-lg hover:bg-[#ffc222]">
                     <FaGofore />
                 </button>
             </div>

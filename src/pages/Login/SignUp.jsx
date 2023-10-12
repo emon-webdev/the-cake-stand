@@ -3,9 +3,10 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import bg from '../../assets/signup.jpg';
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../Shared/SocialLogin";
-
+// emonhossain71@gamil.com
 const SignUp = () => {
   const {
     register,
@@ -54,7 +55,7 @@ const SignUp = () => {
               showConfirmButton: false,
               timer: 1500
             });
-            // navigate(from, { replace: true });
+            navigate(from, { replace: true });
           })
           .catch(error => console.log(error))
       })
@@ -68,21 +69,27 @@ const SignUp = () => {
       <Helmet>
         <title>Bistro Boss | Sign Up</title>
       </Helmet>
-      <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Sign up now!</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
-          </div>
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-              <div className="form-control">
+      <div className="hero py-16 bg-base-200"
+        style={{
+          backgroundImage: `url(${bg})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="">
+          <div className="rounded-3xl px-[35px] md:px-[85px] md:py-[60px] py-[40px] md:w-[620px] w-[380px] border border-[#888888] shadow-2xl bg-[#141414]">
+            <div className="text-center text-white">
+              <h1 className="md:text-5xl text-4xl font-bold">Sign <span className="text-[#ffc222]">Up!</span></h1>
+              <p className="py-6">
+                Hey, Enter your details to get sign up to your account
+              </p>
+            </div>
+
+            <form onSubmit={handleSubmit(onSubmit)} className="">
+              <div className="form-control mb-2">
                 <label className="label">
-                  <span className="label-text">Name</span>
+                  <span className="label-text text-white">Name</span>
                 </label>
                 <input
                   type="text"
@@ -95,9 +102,9 @@ const SignUp = () => {
                   <span className="text-red-600">Name is required</span>
                 )}
               </div>
-              <div className="form-control">
+              <div className="form-control mb-2">
                 <label className="label">
-                  <span className="label-text">Photo URL</span>
+                  <span className="label-text text-white">Photo URL</span>
                 </label>
                 <input
                   type="text"
@@ -109,9 +116,9 @@ const SignUp = () => {
                   <span className="text-red-600">Photo URL is required</span>
                 )}
               </div>
-              <div className="form-control">
+              <div className="form-control mb-2">
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <span className="label-text text-white">Email</span>
                 </label>
                 <input
                   type="email"
@@ -126,7 +133,7 @@ const SignUp = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text text-white">Password</span>
                 </label>
                 <input
                   type="password"
@@ -157,25 +164,33 @@ const SignUp = () => {
                   </p>
                 )}
                 <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
+                  <a href="#" className="label-text-alt text-white link link-hover">
                     Forgot password?
                   </a>
                 </label>
               </div>
-              <div className="form-control mt-6">
+              <div className="form-control mt-3">
                 <input
-                  className="btn btn-primary"
+                  className="btn bg-[#ffc222]"
                   type="submit"
                   value="Sign Up"
                 />
               </div>
             </form>
-            <p>
-              <small>
-                Already have an account <Link to="/login">Login</Link>
-              </small>
-            </p>
-            <SocialLogin />
+            <div>
+              <p className="text-center mt-3 text-white">
+                <small>
+                  You don`t have an account then
+                  <Link
+                    className="text-[#ffc222] mx-1"
+                    to="/login">
+                    Sing In
+                  </Link>
+                  now
+                </small>
+              </p>
+              <SocialLogin/>
+            </div>
           </div>
         </div>
       </div>

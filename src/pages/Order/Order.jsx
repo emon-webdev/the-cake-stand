@@ -3,17 +3,15 @@ import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import orderImg from "../../assets/shop/banner2.jpg";
+import FoodGallery from "../../components/FoodGallery";
 import useMenu from "../../hooks/useMenu";
-import Cover from "../Shared/Cover";
+import InnerBanner from "../Shared/InnerBanner";
 import OrderTab from "./OrderTab";
 
 const Order = () => {
   const categories = ["salad", "pizza", "soup", "dessert", "drinks"];
   const { category } = useParams();
-  console.log(category);
   const initialIndex = categories.indexOf(category);
-  console.log(initialIndex);
   const [tabIndex, setTabIndex] = useState(initialIndex);
   const [menu, loading] = useMenu();
 
@@ -27,33 +25,42 @@ const Order = () => {
       <Helmet>
         <title>THE CAKE STAND || Order Food</title>
       </Helmet>
-      <Cover img={orderImg} title="Order Food" />
-      <div>
-        <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-          <TabList>
-            <Tab>Salad</Tab>
-            <Tab>Pizza</Tab>
-            <Tab>Soup</Tab>
-            <Tab>Dessert</Tab>
-            <Tab>Drinks</Tab>
-          </TabList>
-          <TabPanel>
-            <OrderTab items={salad} />
-          </TabPanel>
-          <TabPanel>
-            <OrderTab items={pizza} />
-          </TabPanel>
-          <TabPanel>
-            <OrderTab items={soup} />
-          </TabPanel>
-          <TabPanel>
-            <OrderTab items={desserts} />
-          </TabPanel>
-          <TabPanel>
-            <OrderTab items={drinks} />
-          </TabPanel>
-        </Tabs>
+      <InnerBanner title="Order" colorTitle="Food" />
+      <div className=" relative z-0">
+        <div className="container">
+          <Tabs
+            className="order-food  md:py-16 py-12"
+            defaultIndex={tabIndex}
+            onSelect={(index) => setTabIndex(index)}
+          >
+            <TabList
+              className="text-center"
+            >
+              <Tab>Burger</Tab>
+              <Tab>Pizza</Tab>
+              <Tab>Meat Box</Tab>
+              <Tab>Cake</Tab>
+              <Tab>French Fries</Tab>
+            </TabList>
+            <TabPanel>
+              <OrderTab items={salad} />
+            </TabPanel>
+            <TabPanel>
+              <OrderTab items={pizza} />
+            </TabPanel>
+            <TabPanel>
+              <OrderTab items={soup} />
+            </TabPanel>
+            <TabPanel>
+              <OrderTab items={desserts} />
+            </TabPanel>
+            <TabPanel>
+              <OrderTab items={drinks} />
+            </TabPanel>
+          </Tabs>
+        </div>
       </div>
+      <FoodGallery />
     </div>
   );
 };

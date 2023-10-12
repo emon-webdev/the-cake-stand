@@ -1,3 +1,5 @@
 .featured-item {
-  background-image: url("../../assets/home/featured.jpg");
+  background-image: url("../../assets/home/feature_bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
