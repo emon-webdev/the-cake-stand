@@ -9,7 +9,11 @@ import AdminHome from "../pages/Dashboard/Admin/AdminHome";
 import AllUsers from "../pages/Dashboard/Admin/AllUsers";
 import ManageBooking from "../pages/Dashboard/Admin/ManageBooking";
 import ManageItems from "../pages/Dashboard/Admin/ManageItems";
+import AddReview from "../pages/Dashboard/Client/AddReview";
+import MyBooking from "../pages/Dashboard/Client/MyBooking";
 import MyCart from "../pages/Dashboard/Client/MyCart";
+import PaymentHistory from "../pages/Dashboard/Client/PaymentHistory";
+import Reservation from "../pages/Dashboard/Client/Reservation";
 import UserHome from "../pages/Dashboard/Client/UserHome";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import Home from "../pages/Home/Home";
@@ -45,7 +49,7 @@ export const router = createBrowserRouter([
         path: "/menu/:id",
         element: <SingleFood />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/menu/${params.id}`),
+          fetch(`${import.meta.env.VITE_APP_API_URL}/menu/${params.id}`),
       },
       {
         path: "/order/:category",
@@ -94,6 +98,22 @@ export const router = createBrowserRouter([
       {
         path: '/mycart',
         element: <MyCart />
+      },
+      {
+        path: '/paymenthistory',
+        element: <PaymentHistory />
+      },
+      {
+        path: '/reservation',
+        element: <Reservation />
+      },
+      {
+        path: '/addreview',
+        element: <AddReview />
+      },
+      {
+        path: '/mybooking',
+        element: <MyBooking />
       },
       {
         path: '/payment',

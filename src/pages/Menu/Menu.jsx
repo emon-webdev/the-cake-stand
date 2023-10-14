@@ -11,6 +11,7 @@ import InnerBanner from "../Shared/InnerBanner";
 import MenuCategory from "./MenuCategory";
 const Menu = () => {
   const [menu, loading] = useMenu();
+  
   const desserts = menu?.filter((item) => item.category === "dessert");
   const soup = menu?.filter((item) => item.category === "soup");
   const salad = menu?.filter((item) => item.category === "salad");

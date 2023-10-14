@@ -28,7 +28,7 @@ const SignUp = () => {
             console.log('user profile info updated')
             const saveUser = { name: data.name, email: data?.email }
             // save database user data
-            fetch(`http://localhost:5000/users`, {
+            fetch(`${import.meta.env.VITE_APP_API_URL}/users`, {
               method: "POST",
               headers: {
                 'content-type': 'application/json'

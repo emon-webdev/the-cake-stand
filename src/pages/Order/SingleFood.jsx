@@ -33,7 +33,7 @@ const SingleFood = () => {
     //     queryKey: ["reviews"],
     //     queryFn: async () => {
     //         const res = await fetch(
-    //             `http://localhost:5000/product-review/${_id}`
+    //             `${import.meta.env.VITE_APP_API_URL}/product-review/${_id}`
     //         );
     //         const data = await res.json();
     //         console.log(data)
@@ -49,7 +49,7 @@ const SingleFood = () => {
         queryKey: ["reviews", _id], // Include the _id as part of the query key
         queryFn: async ({ queryKey }) => {
             const [_key, _id] = queryKey; // Destructure the _id from the queryKey
-            const res = await fetch(`http://localhost:5000/product-review/${_id}`);
+            const res = await fetch(`${import.meta.env.VITE_APP_API_URL}/product-review/${_id}`);
             const data = await res.json();
             console.log(data);
             return data;
@@ -61,7 +61,7 @@ const SingleFood = () => {
             const cartItem = {
                 menuItemId: _id, name, image, price, email: user?.email
             }
-            fetch('http://localhost:5000/carts', {
+            fetch(`${import.meta.env.VITE_APP_API_URL}/carts`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -106,7 +106,7 @@ const SingleFood = () => {
                 comment: data.comment
             }
             console.log(review)
-            fetch('http://localhost:5000/product-review', {
+            fetch(`${import.meta.env.VITE_APP_API_URL}/product-review`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

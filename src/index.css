@@ -67,7 +67,7 @@ button {
   padding-right: 15px;
   position: relative;
   width: 100%;
-  z-index: 9;
+  z-index: 0;
 }
 button:hover {
   color: #fff;

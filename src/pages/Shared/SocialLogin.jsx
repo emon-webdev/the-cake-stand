@@ -23,7 +23,7 @@ const SocialLogin = () => {
                 }
 
                 // save database user data
-                fetch(`http://localhost:5000/users`, {
+                fetch(`${import.meta.env.VITE_APP_API_URL}/users`, {
                     method: "POST",
                     headers: {
                         'content-type': 'application/json'

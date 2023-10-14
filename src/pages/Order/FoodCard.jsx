@@ -15,7 +15,7 @@ const FoodCard = ({ item }) => {
   //     const cartItem = {
   //       menuItemId: _id, name, image, price, email: user?.email
   //     }
-  //     fetch('http://localhost:5000/carts', {
+  //     fetch(`${import.meta.env.VITE_APP_API_URL}/carts`, {
   //       method: 'POST',
   //       headers: {
   //         'content-type': 'application/json'

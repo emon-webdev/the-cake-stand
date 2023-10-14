@@ -20,7 +20,7 @@ const MyCart = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/carts/${item?._id}`, {
+                fetch(`${import.meta.env.VITE_APP_API_URL}/carts/${item?._id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -44,11 +44,11 @@ const MyCart = () => {
             <Helmet>
                 <title>THE CAKE STAND || My Cart</title>
             </Helmet>
-            <div className='uppercase font-bold flex justify-evenly items-center'>
-                <h3 className='text-3xl'>Total Items: {cart?.length}</h3>
-                <h3 className='text-3xl'>Total Price: $ {total}</h3>
+            <div className='uppercase py-4 mb-2 font-bold flex justify-evenly items-center'>
+                <h3 className='text-3xl'>Items: {cart?.length}</h3>
+                <h3 className='text-3xl'>Price: $ {total.toFixed(2)}</h3>
                 <Link to='/payment'>
-                    <button className="btn btn-sm">Pay</button>
+                    <button className="btn btn-md bg-warning">Pay</button>
                 </Link>
             </div>
             <div className="overflow-x-auto">

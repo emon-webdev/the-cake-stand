@@ -55,7 +55,7 @@ const Header = () => {
                         <div className="header-left flex md:flex-wrap items-center justify-between">
                             <p className="text-white mr-3 md:mr-4 hover:text-[#ffc222] text-[16px]">
                                 <a href="tel:01919371381" className="flex items-center ">
-                                    <BsTelephone className="mr-2 text-[#fff]" /> +1 555 765 90
+                                    <BsTelephone className="mr-2 text-[#fff]" /> +01919371381
                                 </a>
                             </p>
                             <p className=" hidden text-white md:flex items-center hover:text-[#ffc222] text-[16px] ">
@@ -120,8 +120,8 @@ const Header = () => {
                         {/* header right action button */}
                         <div className="header-group-action hidden md:flex items-center gap-3">
                             <div className="site-search">
-                                <button 
-                                className="p-0  bg-white border rounded-full hover:bg-[#ffc222] border-[#ffc222] h-[50px] w-[50px] text-center">
+                                <button
+                                    className="p-0  bg-white border rounded-full hover:bg-[#ffc222] border-[#ffc222] h-[50px] w-[50px] text-center">
                                     <FiSearch className="text-center mx-auto text-xl" />
                                 </button>
                             </div>

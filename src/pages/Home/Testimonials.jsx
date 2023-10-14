@@ -13,7 +13,7 @@ import { Navigation } from "swiper/modules";
 const Testimonials = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/review")
+    fetch(`${import.meta.env.VITE_APP_API_URL}/review`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);

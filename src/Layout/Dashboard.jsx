@@ -21,7 +21,7 @@ const Dashboard = () => {
             <DashboardNavbar />
             <div className="drawer lg:drawer-open">
                 <input id="open-dashboard" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content md:ms-10 ms-6 md:py-8 py-6 flex flex-col items-center ">
+                <div className="drawer-content md:ms-10 ms-6 md:py-8 py-6 flex flex-col items-center container relative z-0">
                     {/* Page content here */}
 
                     {/* <label htmlFor="open-dashboard" className="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}

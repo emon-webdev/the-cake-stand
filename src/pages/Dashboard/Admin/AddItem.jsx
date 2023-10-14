@@ -54,7 +54,7 @@ const AddItem = () => {
                 <title>THE CAKE STAND || Add Item</title>
             </Helmet>
             <SectionTitle heading="Add An Item" subHeading="What's New" />
-            <div>
+            <div className='container'>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-control w-full">
                         <label className="label">
@@ -75,7 +75,7 @@ const AddItem = () => {
                             <select
                                 defaultValue="Pick One"
                                 {...register("category", { required: true })}
-                                className="select select-bordered"
+                                className="w-full select select-bordered"
                             >
                                 <option disabled >Pick One</option>
                                 <option>Cake</option>
@@ -115,10 +115,10 @@ const AddItem = () => {
                         <input
                             type="file"
                             {...register("image", { required: true })}
-                            className="file-input file-input-bordered w-full max-w-xs"
+                            className="file-input  file-input-bordered w-full"
                         />
                     </div>
-                    <input className='btn btn-sm mt-4' type="submit" value="Add Item" />
+                    <input className='btn bg-warning mt-4' type="submit" value="Add Item" />
                 </form>
             </div>
         </div>
