@@ -5,7 +5,7 @@ import useAuth from "./useAuth";
 
 
 const axiosSecure = axios.create({
-    baseURL: 'https://the-cake-stand-server.vercel.app',
+    baseURL: `${import.meta.env.VITE_APP_API_URL}`,
 });
 
 const useAxiosSecure = () => {

@@ -1,5 +1,7 @@
+import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { BsCartCheck, BsWallet } from 'react-icons/bs';
 import { FiPhoneCall } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
@@ -14,8 +16,27 @@ const UserHome = () => {
     const currentDate = new Date();
     const formattedDate = format(currentDate, 'MMMM d, yyyy');
     const result = (menu?.length / 7).toFixed(2);
+
+
+    const {
+        data: data = [],
+        isLoading,
+        refetch,
+    } = useQuery({
+        queryKey: ["products", user?.email],
+        queryFn: async () => {
+            const res = await fetch(
+                `${import.meta.env.VITE_APP_API_URL}/user-stats?email=${user?.email}`
+            );
+            const data = res.json();
+            return data;
+        },
+    });
     return (
         <div className="w-full relative z-0">
+            <Helmet>
+                <title>THE CAKE STAND || User Home</title>
+            </Helmet>
             <h2 className="text-3xl mb-5">Hi, {user.displayName}</h2>
             <div className="md:flex flex-wrap gap-4">
                 <Link to="/order/salad"
@@ -76,11 +97,9 @@ const UserHome = () => {
                 <div className='bg-[#cc3433] h-[290px] transition duration-300 hover:bg-[#0096dc] text-center flex flex-col justify-center w-full max-w-[410px] max-h-[290px] rounded-md md:py-8 py-4 md:px-12 px-8 text-white'>
                     <h2 className='text-center font-bold text-4xl mt-2'>Your Activity</h2>
                     <div className='text-left mt-2'>
-                        <h2 className='text-3xl font-medium'>Order: </h2>
-                        <h2 className='text-3xl font-medium'>Reviews: </h2>
-                        <h2 className='text-3xl font-medium'>Bookings: </h2>
-                        <h2 className='text-3xl font-medium'>Payments: </h2>
-
+                        <h2 className='text-3xl font-medium'>Reviews: {data?.reviews?.length > 0 ? data?.reviews?.length : 0}</h2>
+                        <h2 className='text-3xl font-medium'>Bookings: {data?.bookings?.length > 0 ? data?.bookings?.length : 0}</h2>
+                        <h2 className='text-3xl font-medium'>Payments: {data?.payments?.length > 0 ? data?.payments?.length : 0}</h2>
                     </div>
                 </div>
 

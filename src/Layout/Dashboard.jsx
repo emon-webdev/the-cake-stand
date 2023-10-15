@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiOutlineMenu, AiOutlineMenuFold } from 'react-icons/ai';
 import { BiHomeAlt } from 'react-icons/bi';
-import { BsCart3, BsFillCalendar2HeartFill } from 'react-icons/bs';
+import { BsCart3 } from 'react-icons/bs';
 import { FaBookMedical, FaHospitalUser, FaRegCalendarAlt, FaShopify, FaWallet } from 'react-icons/fa';
 import { GrMailOption } from 'react-icons/gr';
 import { MdReviews } from 'react-icons/md';
@@ -114,12 +114,12 @@ const Dashboard = () => {
                                         </NavLink>
                                     </li>
 
-                                    <li>
+                                    {/* <li>
                                         <NavLink to='mybooking'>
                                             <BsFillCalendar2HeartFill />
                                             <span>My Booking</span>
                                         </NavLink>
-                                    </li>
+                                    </li> */}
 
                                 </>
                         }

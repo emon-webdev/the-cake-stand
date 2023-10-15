@@ -62,7 +62,7 @@ const MyCart = () => {
                             <th>Food</th>
                             <th>Item Name</th>
                             <th className='text-end'>Price</th>
-                            <th>Action</th>
+                            <th className='text-end'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -84,7 +84,7 @@ const MyCart = () => {
                                     {item?.name}
                                 </td>
                                 <td className='text-end'>${item?.price}</td>
-                                <td>
+                                <td className='text-end'>
                                     <button
                                         onClick={() => handleDelete(item)}
                                         className="btn btn-ghost bg-red-500 text-white btn-md"><FaRegTrashAlt /></button>
