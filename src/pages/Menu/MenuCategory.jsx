@@ -5,7 +5,7 @@ import MenuItem from "../Shared/MenuItem";
 
 const MenuCategory = ({ items, title, image }) => {
   return (
-    <div className="relative z-0">
+    <div className="">
       <div className="pt-12 pb-10">
         {title && <Cover coverImg={image} title={title} />}
         <div className="container">

@@ -89,7 +89,7 @@ const SignUp = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="">
               <div className="form-control mb-2">
                 <label className="label">
-                  <span className="label-text text-white">Name</span>
+                  <span className="label-text text-white">Name *</span>
                 </label>
                 <input
                   type="text"
@@ -108,7 +108,7 @@ const SignUp = () => {
                 </label>
                 <input
                   type="text"
-                  {...register("photoURL", { required: true })}
+                  {...register("photoURL")}
                   placeholder="Photo URL"
                   className="input input-bordered"
                 />
@@ -118,7 +118,7 @@ const SignUp = () => {
               </div>
               <div className="form-control mb-2">
                 <label className="label">
-                  <span className="label-text text-white">Email</span>
+                  <span className="label-text text-white">Email *</span>
                 </label>
                 <input
                   type="email"
@@ -133,7 +133,7 @@ const SignUp = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-white">Password</span>
+                  <span className="label-text text-white">Password *</span>
                 </label>
                 <input
                   type="password"
@@ -189,7 +189,7 @@ const SignUp = () => {
                   now
                 </small>
               </p>
-              <SocialLogin/>
+              <SocialLogin />
             </div>
           </div>
         </div>

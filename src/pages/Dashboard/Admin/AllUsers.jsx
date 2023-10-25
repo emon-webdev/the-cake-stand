@@ -41,17 +41,18 @@ const AllUsers = () => {
                 <title>THE CAKE STAND || All Users</title>
             </Helmet>
             <h3 className='text-3xl font-semibold text-center my-4 md:pl-4'>Total Users: {users?.length} </h3>
+
             <div>
-                <div className="overflow-x-auto md:pl-4">
-                    <table className="table table-zebra">
+                <div className="overflow-x-auto md:pl-4 md:w-full w-[350px]">
+                    <table className="table">
                         {/* head */}
                         <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th>Action</th>
+                            <tr className='bg-[#18975f] '>
+                                <th className='text-left font-semibold text-white text-lg'>#</th>
+                                <th className='text-left font-semibold text-white text-lg'>Name</th>
+                                <th className='text-left font-semibold text-white text-lg'>Email</th>
+                                <th className='text-left font-semibold text-white text-lg'>Role</th>
+                                <th className='text-left font-semibold text-white text-lg'>Action</th>
                             </tr>
                         </thead>
                         <tbody>

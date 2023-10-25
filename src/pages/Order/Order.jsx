@@ -27,7 +27,7 @@ const Order = () => {
         <title>THE CAKE STAND || Order Food</title>
       </Helmet>
       <InnerBanner title="Order" colorTitle="Food" />
-      <div className=" relative z-0">
+      <div className="">
         <div className="container">
           <Tabs
             className="order-food  md:py-16 py-12"

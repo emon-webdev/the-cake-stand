@@ -65,9 +65,8 @@ button {
   max-width: 1280px;
   padding-left: 15px;
   padding-right: 15px;
-  position: relative;
   width: 100%;
-  z-index: 0;
+  height: auto;
 }
 button:hover {
   color: #fff;
@@ -101,6 +100,10 @@ button:hover {
   min-height: 46px;
   font-size: 12px;
   border-radius: 6px;
+}
+.header-area {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 5px 0px;
 }
 nav.z-10.md\:hidden.flex.flex-col.justify-between.overflow-x-hidden.bg-white.max-w-\[305px\].space-y-6.px-2.py-4.absolute.inset-y-0.left-0.transform.false.md\:translate-x-0.transition.duration-200.ease-in-out {
   position: static;
@@ -226,4 +229,46 @@ ul.slick-dots {
 }
 .banner-area.bg-4 {
   background: url("./assets/hero_bg_1.jpg");
+}
+.form-control input {
+  height: 54px;
+}
+/* .drawer-content.h-screen {
+  height: 100vh;
+} */
+/* Responsive */
+@media (min-width: 1200px) {
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .order-food .react-tabs__tab {
+    position: inherit;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .order-food .react-tabs__tab {
+    position: inherit;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .admin-home .recharts-wrapper {
+    width: 100% !important;
+  }
+  .admin-home .recharts-wrapper svg {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .admin-home .recharts-wrapper {
+    width: 100% !important;
+  }
+  .admin-home .recharts-wrapper svg {
+    width: 100% !important;
+  }
+  .order-food .react-tabs__tab {
+    position: inherit;
+  }
 }

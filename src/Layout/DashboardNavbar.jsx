@@ -44,7 +44,7 @@ const DashboardNavbar = () => {
 
 
     return (
-        <div className="header relative z-0">
+        <div className="header-area">
             <div className={`md:navbar ${stickyClass} header-main py-3 bg-[#fff]`}>
                 <div className="container">
                     <div className="flex w-[100%] justify-between items-center">
@@ -64,7 +64,7 @@ const DashboardNavbar = () => {
                             {/* <Navbar2 /> */}
                         </div>
                         {/* header right action button */}
-                        <div className="header-group-action hidden md:flex items-center gap-3">
+                        <div className="header-group-action hidden lg:flex items-center gap-3">
                             <div className="site-search">
                                 <Link
                                     className="flex items-center hover:bg-[#ffc222]  justify-center h-[50px] w-[50px] text-center relative leading-[50px] border rounded-full border-[#ffc222]"
@@ -101,10 +101,11 @@ const DashboardNavbar = () => {
                             <div className="drawer-content flex items-center ">
                                 {/* Page content here */}
                                 <Link
-                                    className="z-[0] flex items-center hover:bg-[#ffc222]  justify-center h-[45px] w-[45px] text-center relative leading-[50px] border rounded-full border-[#ffc222]"
-                                    to="/mycart">
-                                    <BsCart3 className="text-lg" />
-                                    <span className="absolute text-sm top-[-10px] right-0">+{cart?.length || 0}</span>
+                                    className=" bg-transparent hover:bg-[#ffc222] border rounded-full border-[#ffc222] flex w-[45px] h-[45px]   justify-center items-center text-black dark:text-white text-3xl"
+                                    to={isAdmin ? 'adminhome' : 'userhome'}
+                                >
+                                    <FcManager className="text-2xl" />
+
                                 </Link>
                                 <label
                                     htmlFor="open-dashboard"
@@ -113,24 +114,6 @@ const DashboardNavbar = () => {
                                         className="bg-transparent border rounded-full border-[#ffc222] flex w-[45px] h-[45px]   justify-center items-center text-black dark:text-white text-3xl ml-3"
                                     >
                                         <FiSettings className="text-xl" />
-                                    </span>
-                                </label>
-                                <label htmlFor="mobile-menu" className="">
-                                    <span
-                                        className="md:hidden bg-transparent border rounded-full border-[#ffc222] flex w-[45px] h-[45px]   justify-center items-center text-black dark:text-white text-3xl ml-3 "
-                                    >
-                                        <svg
-                                            className="text-2xl"
-                                            stroke="currentColor"
-                                            fill="currentColor"
-                                            strokeWidth="0"
-                                            viewBox="0 0 1024 1024"
-                                            height="1em"
-                                            width="1em"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path d="M904 160H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0 624H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0-312H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8z"></path>
-                                        </svg>
                                     </span>
                                 </label>
                             </div>

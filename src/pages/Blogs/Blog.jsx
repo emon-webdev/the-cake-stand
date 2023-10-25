@@ -7,7 +7,7 @@ const Blog = () => {
     return (
         <div>
             <InnerBanner title='Blogs' />
-            <div className="blog-area relative z-0 py-12 md:py-16">
+            <div className="blog-area py-12 md:py-16">
                 <div className="container">
                     <div className='blog-card pt-6 align-content-center justify-items-center grid gap-4  grid-cols-1 md:grid-cols-2 md:gap-4 lg:grid-cols-3 lg:gap-5 '>
                         <div className="post-inner">

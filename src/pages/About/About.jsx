@@ -12,7 +12,7 @@ const About = () => {
     return (
         <div>
             <InnerBanner title='About' colorTitle="US" />
-            <div className="about-area relative z-0 py-12 md:py-20">
+            <div className="about-area  py-12 md:py-20">
                 <div className="container">
                     <div className="md:flex items-center gap-8 justify-between details ">
 

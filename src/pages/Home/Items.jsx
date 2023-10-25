@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
+import Loading from '../../components/Loading';
 import useMenu from '../../hooks/useMenu';
 
 const Items = () => {
@@ -11,7 +12,9 @@ const Items = () => {
     const salad = menu.filter((item) => item.category === "salad");
     const pizza = menu.filter((item) => item.category === "pizza");
     const drinks = menu.filter((item) => item.category === "drinks");
-
+    if (loading) {
+        <Loading />
+    }
     const settings = {
         dots: false,
         accessibility: false,
@@ -56,7 +59,6 @@ const Items = () => {
         <div className='py-8 pt-10'>
             <div className="container">
                 <div className='item-group'>
-
                     <Slider {...settings} className='max-h-[130px]'>
                         <div className='single-item overflow-hidden h-[100%] '>
                             <Link

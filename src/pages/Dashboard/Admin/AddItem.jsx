@@ -49,12 +49,12 @@ const AddItem = () => {
     };
 
     return (
-        <div className='w-full px-10 '>
+        <div className='w-full md:px-10'>
             <Helmet>
                 <title>THE CAKE STAND || Add Item</title>
             </Helmet>
             <SectionTitle heading="Add An Item" subHeading="What's New" />
-            <div className='container'>
+            <div className=''>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-control w-full">
                         <label className="label">
@@ -64,9 +64,10 @@ const AddItem = () => {
                             {...register("name", { required: true, maxLength: 80 })}
                             type="text"
                             placeholder="Type here"
-                            className="input input-bordered w-full"
+                            className="input input-bordered  w-full"
                         />
                     </div>
+                    
                     <div className='md:flex items-center gap-4'>
                         <div className="form-control w-full">
                             <label className="label">
@@ -118,7 +119,7 @@ const AddItem = () => {
                             className="file-input  file-input-bordered w-full"
                         />
                     </div>
-                    <input className='btn bg-warning mt-4' type="submit" value="Add Item" />
+                    <input className='primary-btn mt-4' type="submit" value="Add Item" />
                 </form>
             </div>
         </div>

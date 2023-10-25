@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { AiOutlineMenu, AiOutlineMenuFold } from 'react-icons/ai';
 import { BiHomeAlt } from 'react-icons/bi';
 import { BsCart3 } from 'react-icons/bs';
@@ -8,20 +8,26 @@ import { MdReviews } from 'react-icons/md';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import logo from "../assets/main-logo.png";
 import useAdmin from '../hooks/useAdmin';
+import { AuthContext } from '../providers/AuthProvider';
 import DashboardNavbar from './DashboardNavbar';
 const Dashboard = () => {
 
     // TODO: load data from the server to have dynamic is admin based
     // const isAdmin = true ;
     const [isAdmin] = useAdmin()
-
+    const { user, logOut } = useContext(AuthContext);
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.log(error));
+    }
 
     return (
         <div>
             <DashboardNavbar />
             <div className="drawer lg:drawer-open">
                 <input id="open-dashboard" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content md:ms-10 ms-6 md:py-8 py-6 flex flex-col items-center container relative z-0">
+                <div className="drawer-content h-screen lg:ms-10 md:py-8 py-6 flex flex-col items-center container">
                     {/* Page content here */}
 
                     {/* <label htmlFor="open-dashboard" className="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
@@ -113,13 +119,6 @@ const Dashboard = () => {
                                             <span>Add Review</span>
                                         </NavLink>
                                     </li>
-
-                                    {/* <li>
-                                        <NavLink to='mybooking'>
-                                            <BsFillCalendar2HeartFill />
-                                            <span>My Booking</span>
-                                        </NavLink>
-                                    </li> */}
 
                                 </>
                         }

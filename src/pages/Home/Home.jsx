@@ -13,7 +13,7 @@ import Testimonials from "./Testimonials";
 
 const Home = () => {
   return (
-    <div className="relative z-0">
+    <div className="">
       <Helmet>
         <title>THE CAKE STAND || Home</title>
       </Helmet>

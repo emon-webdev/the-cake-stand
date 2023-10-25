@@ -10,15 +10,23 @@ import "swiper/css/navigation";
 // import required modules
 import { Navigation } from "swiper/modules";
 import reviewIMmg from '../../assets/review-img.png';
+import Loading from "../../components/Loading";
 const Testimonials = () => {
   const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetch(`${import.meta.env.VITE_APP_API_URL}/review`)
       .then((res) => res.json())
-      .then((data) => setReviews(data));
-  }, []);
+      .then((data) => {
+        setReviews(data)
+        setLoading(false)
+      });
+  }, [loading]);
+  if (loading) {
+    <Loading />
+  }
   return (
-    <section className="my-16">
+    <section className="md:my-16 my-10 mb-2">
       <div className="container">
         <SectionTitle subHeading="What Our client Say?" heading="Testimonials" />
         <>

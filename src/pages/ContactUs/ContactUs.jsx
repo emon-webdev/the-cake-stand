@@ -6,7 +6,7 @@ const ContactUs = () => {
     return (
         <div>
             <InnerBanner title='Contact' colorTitle="US" />
-            <div className="contact-area relative z-0 pt-12 md:pt-20">
+            <div className="contact-area  pt-12 md:pt-20">
                 <div className="container">
                     <SectionTitle
                         heading="we'd love to hear from you" subHeading="Lorem ipsum dolor sit amet, consectetur adipiscing elit."

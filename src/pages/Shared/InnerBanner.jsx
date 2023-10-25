@@ -5,7 +5,7 @@ import banner1 from '../../assets/hero_bg_4.jpg';
 const InnerBanner = ({ title, colorTitle }) => {
     return (
         <div
-            className="py-[70px] relative z-0 dynamic-banner bg-[#111121]"
+            className="py-[70px] dynamic-banner bg-[#111121]"
             style={{
                 backgroundImage: `url(${banner1})`,
                 backgroundPosition: "center",

@@ -55,30 +55,28 @@ const FoodGallery = () => {
     return (
         <div className='gallery-area'>
             <SectionTitle heading="Food " colorHeading="Gallery" />
-
-
             <div className='gallery-items mt-16 overflow-hidden max-h-[520px]'>
                 <Slider {...settings} className='max-h-[520px]'>
                     <div className='single-gallery overflow-hidden h-[100%] '>
-                        <img className='w-full h-[420px] md:h-[520px]' src={galleryImg1} alt="" srcSet="" />
+                        <img className='w-full h-[420px] lg:h-[520px]' src={galleryImg1} alt="" srcSet="" />
                     </div>
                     <div className='single-gallery overflow-hidden h-[100%] '>
-                        <img className='w-full h-[420px] md:h-[520px]' src={galleryImg2} alt="" srcSet="" />
+                        <img className='w-full h-[420px] lg:h-[520px]' src={galleryImg2} alt="" srcSet="" />
                     </div>
                     <div className='single-gallery overflow-hidden h-[100%] '>
-                        <img className='w-full h-[420px] md:h-[520px]' src={galleryImg3} alt="" srcSet="" />
+                        <img className='w-full h-[420px] lg:h-[520px]' src={galleryImg3} alt="" srcSet="" />
                     </div>
                     <div className='single-gallery overflow-hidden h-[100%] '>
-                        <img className='w-full h-[420px] md:h-[520px]' src={galleryImg4} alt="" srcSet="" />
+                        <img className='w-full h-[420px] lg:h-[520px]' src={galleryImg4} alt="" srcSet="" />
                     </div>
                     <div className='single- overflow-hidden h-[100%] '>
-                        <img className='w-full h-[420px] md:h-[520px]' src={galleryImg5} alt="" srcSet="" />
+                        <img className='w-full h-[420px] lg:h-[520px]' src={galleryImg5} alt="" srcSet="" />
                     </div>
                     <div className='single-gallery overflow-hidden h-[100%] '>
-                        <img className='w-full h-[420px] md:h-[520px]' src={galleryImg6} alt="" srcSet="" />
+                        <img className='w-full h-[420px] lg:h-[520px]' src={galleryImg6} alt="" srcSet="" />
                     </div>
                     <div className='single-gallery overflow-hidden h-[100%] '>
-                        <img className='w-full h-[420px] md:h-[520px]' src={galleryImg7} alt="" srcSet="" />
+                        <img className='w-full h-[420px] lg:h-[520px]' src={galleryImg7} alt="" srcSet="" />
                     </div>
                 </Slider>
             </div>

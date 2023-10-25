@@ -2,13 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { BsCart3, BsCurrencyDollar } from "react-icons/bs";
 import { FaSitemap, FaUsers } from "react-icons/fa";
-import { Bar, BarChart, CartesianGrid, Cell, Pie, PieChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart, CartesianGrid, Cell, XAxis, YAxis } from 'recharts';
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-
-
-
-
 
 const AdminHome = () => {
     const { user } = useAuth();
@@ -118,14 +114,14 @@ const AdminHome = () => {
 
 
     return (
-        <div className="w-full relative z-0">
+        <div className="admin-home w-full">
             <h2 className="text-3xl mb-5">Hi, {user.displayName}</h2>
             <div className="md:flex flex-wrap gap-4">
                 <div
                     style={{ boxShadow: "0 4px 4px rgb(87 100 126 / 21%" }}
-                    className="bg-[#18975f]  transition duration-300 hover:bg-[#ffba00]  flex items-center gap-2 py-5 rounded-md px-5 w-full h-[130px] md:w-72 "
+                    className="bg-[#18975f] mb-3 md:mb-0 transition duration-300 hover:bg-[#ffba00]  flex items-center gap-2 py-5 rounded-md px-5 w-full h-[130px] md:w-64 "
                 >
-                    <div className="mr-5">
+                    <div className="mr-3">
                         <BsCurrencyDollar className="text-6xl text-[#fff]" />
 
                     </div>
@@ -137,9 +133,9 @@ const AdminHome = () => {
                 </div>
                 <div
                     style={{ boxShadow: "0 4px 4px rgb(87 100 126 / 21%" }}
-                    className="bg-[#0096dc]  transition duration-300 hover:bg-[#cc3433]  flex items-center gap-2 py-5 rounded-md px-5 w-full h-[130px] md:w-72 "
+                    className="bg-[#0096dc] mb-3 md:mb-0 transition duration-300 hover:bg-[#cc3433]  flex items-center gap-2 py-5 rounded-md px-5 w-full h-[130px] md:w-64 "
                 >
-                    <div className="mr-5">
+                    <div className="mr-3">
                         <FaUsers className="text-6xl text-[#fff]" />
                     </div>
                     <div className="text-white">
@@ -150,9 +146,9 @@ const AdminHome = () => {
                 </div>
                 <div
                     style={{ boxShadow: "0 4px 4px rgb(87 100 126 / 21%" }}
-                    className="bg-[#c31162]  transition duration-300 hover:bg-[#f37b2a] flex items-center gap-2 py-5 rounded-md px-5 w-full h-[130px] md:w-72 "
+                    className="bg-[#c31162] mb-3 md:mb-0 transition duration-300 hover:bg-[#f37b2a] flex items-center gap-2 py-5 rounded-md px-5 w-full h-[130px] md:w-64 "
                 >
-                    <div className="mr-5">
+                    <div className="mr-3">
                         <FaSitemap className="text-6xl text-[#fff]" />
                     </div>
                     <div className="text-white">
@@ -163,9 +159,9 @@ const AdminHome = () => {
                 </div>
                 <div
                     style={{ boxShadow: "0 4px 4px rgb(87 100 126 / 21%" }}
-                    className="bg-[#f37b2a] h-[130px] transition duration-300 hover:bg-[#824235]  flex items-center gap-2 py-5 rounded-md px-5 w-full md:w-72"
+                    className="bg-[#f37b2a] mb-3 md:mb-0 h-[130px] transition duration-300 hover:bg-[#824235]  flex items-center gap-2 py-5 rounded-md px-5 w-full md:w-64"
                 >
-                    <div className="mr-5">
+                    <div className="mr-3">
                         <BsCart3 className="text-6xl text-[#fff]" />
                     </div>
                     <div className="text-white">
@@ -176,7 +172,7 @@ const AdminHome = () => {
                 </div>
             </div>
 
-            <div className="flex flex-wrap my-10">
+            <div className=" my-10">
                 <div className="">
                     <BarChart
                         width={500}
@@ -198,30 +194,6 @@ const AdminHome = () => {
                             ))}
                         </Bar>
                     </BarChart>
-                </div>
-                <div className="">
-                    <ResponsiveContainer
-                        width="100%" height="100%"
-                    >
-                        <PieChart
-                            width={400} height={400}
-                        >
-                            <Pie
-                                data={circleData}
-                                cx="50%"
-                                cy="50%"
-                                labelLine={false}
-                                label={renderCustomizedLabel}
-                                outerRadius={80}
-                                fill="#8884d8"
-                                dataKey="value"
-                            >
-                                {circleData?.map((entry, index) => (
-                                    <Cell key={`cell-${index}`} fill={CIRCLECOLORS[index % CIRCLECOLORS.length]} />
-                                ))}
-                            </Pie>
-                        </PieChart>
-                    </ResponsiveContainer>
                 </div>
             </div>
         </div>

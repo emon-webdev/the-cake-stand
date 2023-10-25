@@ -5,18 +5,24 @@ import pizzaImg from "../../assets/menu/pizza-bg.jpg";
 import saladImg from "../../assets/menu/salad-bg.jpg";
 import soupImg from "../../assets/menu/soup-bg.jpg";
 import FoodGallery from "../../components/FoodGallery";
+import Loading from "../../components/Loading";
 import SectionTitle from "../../components/SectionTitle";
 import useMenu from "../../hooks/useMenu";
 import InnerBanner from "../Shared/InnerBanner";
 import MenuCategory from "./MenuCategory";
 const Menu = () => {
   const [menu, loading] = useMenu();
-  
+
   const desserts = menu?.filter((item) => item.category === "dessert");
   const soup = menu?.filter((item) => item.category === "soup");
   const salad = menu?.filter((item) => item.category === "salad");
   const pizza = menu?.filter((item) => item.category === "pizza");
   const offered = menu?.filter((item) => item.category === "offered");
+
+  if (loading) {
+    <Loading />
+  }
+
   return (
     <div>
       <Helmet>

@@ -38,20 +38,19 @@ const MyCart = () => {
         })
     };
 
-
     return (
         <div className='w-full'>
             <Helmet>
                 <title>THE CAKE STAND || My Cart</title>
             </Helmet>
-            <div className='uppercase py-4 mb-2 font-bold flex justify-evenly items-center'>
+            <div className='uppercase py-4 mb-2 font-bold md:flex justify-evenly items-center'>
                 <h3 className='text-3xl'>Items: {cart?.length}</h3>
-                <h3 className='text-3xl'>Price: $ {total.toFixed(2)}</h3>
+                <h3 className='text-3xl my-3 md:my-0'>Price: $ {total.toFixed(2)}</h3>
                 <Link to='/payment'>
                     <button className="btn btn-md bg-warning">Pay</button>
                 </Link>
             </div>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto md:w-full w-[350px]">
                 <table className="table">
                     {/* head */}
                     <thead>

@@ -36,14 +36,14 @@ const AddReview = () => {
 
     };
     return (
-        <div className="w-full relative z-0">
+        <div className="w-full md:mt-0 mt-5">
             <Helmet>
                 <title>THE CAKE STAND || Add Review</title>
             </Helmet>
             <SectionTitle heading="Give a Review" subHeading="Sharing is Caring!!" />
-            <div className='container'>
+            <div className=''>
                 <form
-                    className='max-w-md mx-auto bg-white mt-7 px-12 py-6'
+                    className='max-w-md mx-auto bg-white mt-7 md:px-12 px-6 py-6'
                     onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-control w-full">
                         <h3 className='text-2xl mb-2 text-center  font-semibold'>Rate US</h3>
@@ -93,7 +93,7 @@ const AddReview = () => {
 
                         </textarea>
                     </div>
-                    <input className='btn bg-warning mt-4' type="submit" value="Add Review" />
+                    <input className='primary-btn mt-5' type="submit" value="Add Review" />
                 </form>
             </div>
         </div>

@@ -45,19 +45,19 @@ const ManageItems = () => {
             </Helmet>
             <SectionTitle heading="Manage All Items" subHeading="Hurry up" />
             <div>
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto mt-5 md:w-full w-[350px]">
                     <table className="table">
                         {/* head */}
                         <thead>
-                            <tr>
-                                <th>
+                            <tr className='bg-[#18975f]'>
+                                <th className='text-left font-semibold text-white text-lg'>
                                     #
                                 </th>
-                                <th>Name</th>
-                                <th>Category</th>
-                                <th>Price</th>
-                                <th>Update</th>
-                                <th>Delete</th>
+                                <th className='text-left font-semibold text-white text-lg'>Name</th>
+                                <th className='text-left font-semibold text-white text-lg'>Category</th>
+                                <th className='text-left font-semibold text-white text-lg'>Price</th>
+                                <th className='text-left font-semibold text-white text-lg'>Update</th>
+                                <th className='text-left font-semibold text-white text-lg'>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -83,7 +83,7 @@ const ManageItems = () => {
                                     </td>
                                     <td className='text-right'>${item?.price}</td>
                                     <td>
-                                        <button className="btn btn-ghost btn-xs">Update</button>
+                                        <button className="btn btn-ghost bg-green-600 text-white btn-xs">Update</button>
                                     </td>
                                     <td>
                                         <td>

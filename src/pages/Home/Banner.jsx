@@ -20,17 +20,17 @@ const Banner = () => {
     swipe: true,
     touchMove: true,
     swipeToSlide: true,
-    autoplay: true,
+    // autoplay: true,
     autoplaySpeed: 3000,
   };
 
 
   return (
-    <div className="hero-area ">
+    <div className="hero-area">
 
       <Slider {...settings} className='max-h-[800px]'>
         <div
-          className="banner-area bg-1 relative z-0"
+          className="banner-area bg-1 "
         >
           <div className="container">
             <div className="banner-wrapper h-[600px] md:h-[800px] flex items-center justify-between">
@@ -55,14 +55,14 @@ const Banner = () => {
               <div
                 data-aos="fade-left"
                 className="banner-img md:basis-5/12 hidden md:block">
-                
+
                 <img src='https://demo2.pavothemes.com/poco/wp-content/uploads/2022/12/rev_home5_7.png' alt="" srcSet="" />
               </div>
             </div>
           </div>
         </div>
         <div
-          className="banner-area bg-2 relative z-0"
+          className="banner-area bg-2"
         >
           <div className="container">
             <div className="banner-wrapper h-[600px] md:h-[800px] flex items-center justify-between">
@@ -155,35 +155,6 @@ const Banner = () => {
           </div>
         </div>
       </Slider>
-
-
-
-      {/* <Carousel>
-        <div>
-          <img src={slider1} />
-          <p className="legend">Legend 1</p>
-        </div>
-        <div>
-          <img src={slider2} />
-          <p className="legend">Legend 2</p>
-        </div>
-        <div>
-          <img src={slider3} />
-          <p className="legend">Legend 3</p>
-        </div>
-        <div>
-          <img src={slider4} />
-          <p className="legend">Legend 3</p>
-        </div>
-        <div>
-          <img src={slider5} />
-          <p className="legend">Legend 3</p>
-        </div>
-        <div>
-          <img src={slider6} />
-          <p className="legend">Legend 3</p>
-        </div>
-      </Carousel> */}
     </div>
   );
 };
