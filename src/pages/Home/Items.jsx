@@ -1,9 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
+import cat_img_4 from '../../assets/item-img/category-11.png';
+import cat_img_6 from '../../assets/item-img/category-22.png';
+import cat_img_5 from '../../assets/item-img/category-33.png';
+import cat_img_1 from '../../assets/item-img/category3.png';
+import cat_img_2 from '../../assets/item-img/category5.png';
+import cat_img_3 from '../../assets/item-img/category7.png';
 import Loading from '../../components/Loading';
 import useMenu from '../../hooks/useMenu';
-
 const Items = () => {
     const [menu, loading] = useMenu();
 
@@ -74,7 +79,7 @@ const Items = () => {
                                     <img
                                         className='transition duration-300'
                                         decoding="async"
-                                        src="https://demo2.pavothemes.com/poco/wp-content/uploads/2022/12/h5_cat-3.png" alt="Hot Drinks"
+                                        src={cat_img_2} alt="Hot Drinks"
                                     />
                                 </div>
                             </Link>
@@ -93,7 +98,7 @@ const Items = () => {
                                     <img
                                         className='transition duration-300'
                                         decoding="async"
-                                        src="https://demo2.pavothemes.com/poco/wp-content/uploads/2022/12/h5_cat-3.png" alt="Hot Drinks"
+                                        src={cat_img_1} alt="Hot Drinks"
                                     />
                                 </div>
                             </Link>
@@ -112,7 +117,7 @@ const Items = () => {
                                     <img
                                         className='transition duration-300'
                                         decoding="async"
-                                        src="https://demo2.pavothemes.com/poco/wp-content/uploads/2022/12/h5_cat-3.png" alt="Hot Drinks"
+                                        src={cat_img_3} alt="Hot Drinks"
                                     />
                                 </div>
                             </Link>
@@ -131,7 +136,7 @@ const Items = () => {
                                     <img
                                         className='transition duration-300'
                                         decoding="async"
-                                        src="https://demo2.pavothemes.com/poco/wp-content/uploads/2022/12/h5_cat-3.png" alt="Hot Drinks"
+                                        src={cat_img_4} alt="Hot Drinks"
                                     />
                                 </div>
                             </Link>
@@ -150,7 +155,7 @@ const Items = () => {
                                     <img
                                         className='transition duration-300'
                                         decoding="async"
-                                        src="https://demo2.pavothemes.com/poco/wp-content/uploads/2022/12/h5_cat-3.png" alt="Hot Drinks"
+                                        src={cat_img_6} alt="Hot Drinks"
                                     />
                                 </div>
                             </Link>
@@ -169,7 +174,7 @@ const Items = () => {
                                     <img
                                         className='transition duration-300'
                                         decoding="async"
-                                        src="https://demo2.pavothemes.com/poco/wp-content/uploads/2022/12/h5_cat-3.png" alt="Hot Drinks"
+                                        src={cat_img_5} alt="Hot Drinks"
                                     />
                                 </div>
                             </Link>

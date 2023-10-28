@@ -1,13 +1,18 @@
+import { AddIcon, DeleteIcon, MinusIcon } from '@chakra-ui/icons';
+import { ButtonGroup, IconButton } from '@chakra-ui/react';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { FaRegTrashAlt } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useCart from '../../../hooks/useCart';
+import { addToCart, removeFromCart, removeOneProduct } from '../../../redux/features/cart/cartSlice';
 const MyCart = () => {
 
     const [cart, refetch] = useCart()
     const total = cart.reduce((sum, item) => item.price + sum, 0)
+    const { products, totalPrice } = useSelector((state) => state.cart)
+    const dispatch = useDispatch()
 
     const handleDelete = (item) => {
         Swal.fire({
@@ -38,6 +43,8 @@ const MyCart = () => {
         })
     };
 
+    console.log(products, totalPrice)
+    
     return (
         <div className='w-full'>
             <Helmet>
@@ -45,11 +52,15 @@ const MyCart = () => {
             </Helmet>
             <div className='uppercase py-4 mb-2 font-bold md:flex justify-evenly items-center'>
                 <h3 className='text-3xl'>Items: {cart?.length}</h3>
-                <h3 className='text-3xl my-3 md:my-0'>Price: $ {total.toFixed(2)}</h3>
+                <h3 className='text-3xl my-3 md:my-0'>
+                    Price: $ {total.toFixed(2)}
+                </h3>
+
                 <Link to='/payment'>
                     <button className="btn btn-md bg-warning">Pay</button>
                 </Link>
             </div>
+            $ {totalPrice.toFixed(2)}
             <div className="overflow-x-auto md:w-full w-[350px]">
                 <table className="table">
                     {/* head */}
@@ -60,12 +71,13 @@ const MyCart = () => {
                             </th>
                             <th>Food</th>
                             <th>Item Name</th>
+                            <th>Quantity</th>
                             <th className='text-end'>Price</th>
                             <th className='text-end'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {cart?.map((item, index) =>
+                        {products?.map((item, index) =>
                             <tr key={item?._id}>
                                 <td>
                                     {index + 1}
@@ -82,11 +94,39 @@ const MyCart = () => {
                                 <td>
                                     {item?.name}
                                 </td>
+                                <td>
+                                    <ButtonGroup size='sm' isAttached variant='outline'>
+                                        <IconButton
+                                            onClick={() => dispatch(removeOneProduct(item))}
+                                            aria-label='Add to friends'
+                                            icon={<MinusIcon />}
+                                        />
+                                        <h1 className='px-3 text-2xl'>
+                                            {item.quantity}
+                                        </h1>
+                                        <IconButton
+                                            onClick={() => dispatch(addToCart(item))}
+                                            aria-label='Add to friends'
+                                            icon={<AddIcon />}
+                                        />
+                                    </ButtonGroup>
+                                </td>
                                 <td className='text-end'>${item?.price}</td>
                                 <td className='text-end'>
-                                    <button
+                                    <IconButton
+                                        // onClick={() => handleDelete(item)}
+                                        onClick={() => dispatch(removeFromCart(item))}
+                                        size='sm'
+                                        aria-label='Add to friends'
+                                        icon={<DeleteIcon />}
+                                        bg='red'
+                                        borderColor='#fff'
+                                        color='#fff'
+                                        _hover={{ bg: 'green', color: '#fff' }}
+                                    />
+                                    {/* <button
                                         onClick={() => handleDelete(item)}
-                                        className="btn btn-ghost bg-red-500 text-white btn-md"><FaRegTrashAlt /></button>
+                                        className="btn btn-ghost bg-red-500 text-white btn-md"><FaRegTrashAlt /></button> */}
                                 </td>
                             </tr>)}
 

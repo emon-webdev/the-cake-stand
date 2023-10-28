@@ -2,12 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
-import { BsFillBagHeartFill } from 'react-icons/bs';
 import { FcManager } from 'react-icons/fc';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useCart from '../../hooks/useCart';
 import { AuthContext } from '../../providers/AuthProvider';
+import { addToCart } from '../../redux/features/cart/cartSlice';
 const SingleFood = () => {
     const {
         register,
@@ -17,7 +18,6 @@ const SingleFood = () => {
     } = useForm();
     const item = useLoaderData()
     const { image, price, recipe, name, _id } = item;
-    console.log(_id)
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
     const location = useLocation()
@@ -25,21 +25,8 @@ const SingleFood = () => {
     const currentDate = new Date();
     const formattedDate = format(currentDate, 'MMMM d, yyyy');
 
-    // const {
-    //     data: reviews = [],
-    //     refetch: reviewRefetch,
-    //     isLoading,
-    // } = useQuery({
-    //     queryKey: ["reviews"],
-    //     queryFn: async () => {
-    //         const res = await fetch(
-    //             `${import.meta.env.VITE_APP_API_URL}/product-review/${_id}`
-    //         );
-    //         const data = await res.json();
-    //         console.log(data)
-    //         return data;
-    //     },
-    // });
+    const { products, totalPrice } = useSelector((state) => state.cart)
+    const dispatch = useDispatch()
 
     const {
         data: reviews = [],
@@ -57,42 +44,47 @@ const SingleFood = () => {
     });
 
     const handleAddToCart = item => {
-        if (user && user?.email) {
-            const cartItem = {
-                menuItemId: _id, name, image, price, email: user?.email
-            }
-            fetch(`${import.meta.env.VITE_APP_API_URL}/carts`, {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(cartItem)
-            }).then(res => res.json()).then(data => {
-                if (data.insertedId) {
-                    refetch() // refetch cart to update the cart number
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Food added on the cart',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                }
-            })
-        } else {
-            Swal.fire({
-                title: 'Please login to order the food?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Login Now'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    navigate('/login', { state: { from: location } })
-                }
-            })
-        }
+
+        dispatch(addToCart(item))
+        Swal.fire({
+            icon: 'success',
+            title: 'Food added on the cart',
+        })
+
+        // if (user && user?.email) {
+        //     const cartItem = {
+        //         menuItemId: _id, name, image, price, email: user?.email
+        //     }
+        //     fetch(`${import.meta.env.VITE_APP_API_URL}/carts`, {
+        //         method: 'POST',
+        //         headers: {
+        //             'content-type': 'application/json'
+        //         },
+        //         body: JSON.stringify(cartItem)
+        //     }).then(res => res.json()).then(data => {
+        //         if (data.insertedId) {
+        //             refetch() // refetch cart to update the cart number
+        //             Swal.fire({
+        //                 icon: 'success',
+        //                 title: 'Food added on the cart'
+        //             })
+        //         }
+        //     })
+        // } else {
+        //     Swal.fire({
+        //         title: 'Please login to order the food?',
+        //         icon: 'warning',
+        //         showCancelButton: true,
+        //         confirmButtonColor: '#3085d6',
+        //         cancelButtonColor: '#d33',
+        //         confirmButtonText: 'Login Now'
+        //     }).then((result) => {
+        //         if (result.isConfirmed) {
+        //             navigate('/login', { state: { from: location } })
+        //         }
+        //     })
+        // }
+
     }
     const handleComment = data => {
         if (user && user?.email) {
@@ -164,32 +156,39 @@ const SingleFood = () => {
                         </p>
                         <h4
                             className="text-[#ffc222] text-3xl mb-1">
-                            $ {item?.price} <span className='line-through text-[#808080]'> $ {Math.ceil(item?.price * 1.05)}</span>
+                            $ {item?.price}
+                            <span className='line-through ml-3 text-[#808080]'>
+                                $ {Math.ceil(item?.price * 1.05)}
+                            </span>
                         </h4>
                         <div className="divider my-2"></div>
                         <div className="single-item-action flex items-center gap-4 text-center">
-                            {/* <div className="quantity-btn flex items-center">
-                                <button
-                                    className="bg-[#ffc222]">
-                                    <AiOutlineMinus />
-                                </button>
-                                <h1 className='px-3 text-2xl'>
-                                    1
-                                </h1>
-                                <button
-                                    className="bg-[#ffc222]">
-                                    <AiOutlinePlus className='' />
-                                </button>
-                            </div> */}
+                            <div className="quantity-btn flex items-center">
+                                {/* <ButtonGroup size='sm' isAttached variant='outline'>
+                                    <IconButton
+                                        onClick={() => dispatch(removeOneProduct(item))}
+                                        aria-label='Add to friends'
+                                        icon={<MinusIcon />}
+                                    />
+                                    <h1 className='px-3 text-2xl'>
+                                        {item.quantity}
+                                    </h1>
+                                    <IconButton
+                                        onClick={() => dispatch(addToCart(item))}
+                                        aria-label='Add to friends'
+                                        icon={<AddIcon />}
+                                    />
+                                    <IconButton
+                                        onClick={() => dispatch(removeFromCart(item))}
+                                        aria-label='Add to friends'
+                                        icon={<DeleteIcon />}
+                                    />
+                                </ButtonGroup> */}
+                            </div>
                             <button
                                 onClick={() => handleAddToCart(item)}
                                 className="primary-btn second-btn">
                                 Add to Cart
-                            </button>
-                            <button
-                                onClick={() => handleAddToCart(item)}
-                                className="bg-[#ffc222]">
-                                <BsFillBagHeartFill />
                             </button>
                         </div>
                     </div>

@@ -27,13 +27,13 @@ const Dashboard = () => {
             <DashboardNavbar />
             <div className="drawer lg:drawer-open">
                 <input id="open-dashboard" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content h-screen lg:ms-10 md:py-8 py-6 flex flex-col items-center container">
+                <div className="drawer-content h-screen lg:ms-4 md:py-8 py-6 flex flex-col items-center container">
                     {/* Page content here */}
 
                     {/* <label htmlFor="open-dashboard" className="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
                     <Outlet />
                 </div>
-                <div className="drawer-side md:mt-[-101px]">
+                <div className="drawer-side md:mt-[-72px]">
                     <label htmlFor="open-dashboard" className="drawer-overlay"></label>
                     <ul className="menu p-4 pt-2 w-80 min-h-full bg-[#D1A054] text-base-content">
                         <li>

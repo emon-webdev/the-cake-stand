@@ -23,7 +23,7 @@ const ManageBooking = () => {
     console.log(reservation)
 
     return (
-        <div className='w-full md:px-10 '>
+        <div className='w-full'>
             <Helmet>
                 <title>THE CAKE STAND || Add Item</title>
             </Helmet>

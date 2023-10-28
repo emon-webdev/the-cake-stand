@@ -44,7 +44,7 @@ const DashboardNavbar = () => {
 
 
     return (
-        <div className="header-area">
+        <div className="header-area dashboard-header">
             <div className={`md:navbar ${stickyClass} header-main py-3 bg-[#fff]`}>
                 <div className="container">
                     <div className="flex w-[100%] justify-between items-center">
@@ -52,9 +52,9 @@ const DashboardNavbar = () => {
                             data-aos="zoom-in"
                             data-aos-duration="500"
                             className="logo ">
-                            <Link to="/" className="text-3xl md:w-[80px] w-14 font-bold flex items-center">
+                            <Link to="/" className=" text-3xl md:w-[80px] w-14 font-bold flex items-center">
                                 <img
-                                    className="md:w-[80px] w-14"
+                                    className="lg:hidden md:w-[80px] w-14"
                                     src={logo} alt="" srcSet="" />
                             </Link>
                         </div>
