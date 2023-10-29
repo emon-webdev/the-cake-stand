@@ -14,6 +14,9 @@ export const api = createApi({
         getReviews: builder.query({
             query: () => `/review`,
         }),
+        getProductReview: builder.query({
+            query: (id) => `/product-review/${id}`,
+        }),
     }),
 })
 
@@ -21,4 +24,5 @@ export const {
     useGetProductsQuery,
     useGetSingleProductsQuery,
     useGetReviewsQuery,
+    useGetProductReviewQuery,
 } = api;

@@ -1,18 +1,18 @@
-import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { FcManager } from 'react-icons/fc';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import Loading from '../../components/Loading';
 import useCart from '../../hooks/useCart';
 import { AuthContext } from '../../providers/AuthProvider';
-import { useGetSingleProductsQuery } from '../../redux/api/apiSlice';
+import { useGetProductReviewQuery, useGetSingleProductsQuery } from '../../redux/api/apiSlice';
 const SingleFood = () => {
     let image, price, recipe, name, _id, category
     const { id } = useParams()
-    const { data: item, isLoading: loading, error } = useGetSingleProductsQuery(id)
-    
+    const { data: item, isLoading: loading } = useGetSingleProductsQuery(id)
+    const { data: productReview, isLoading: reviewLoading, refetch: reviewRefetch } = useGetProductReviewQuery(id)
     // const item = useLoaderData()
     // const { image, price, recipe, category, name, _id } = item;
 
@@ -33,20 +33,6 @@ const SingleFood = () => {
     const currentDate = new Date();
     const formattedDate = format(currentDate, 'MMMM d, yyyy');
 
-    const {
-        data: reviews = [],
-        refetch: reviewRefetch,
-        isLoading,
-    } = useQuery({
-        queryKey: ["reviews", _id], // Include the _id as part of the query key
-        queryFn: async ({ queryKey }) => {
-            const [_key, _id] = queryKey; // Destructure the _id from the queryKey
-            const res = await fetch(`${import.meta.env.VITE_APP_API_URL}/product-review/${_id}`);
-            const data = await res.json();
-            console.log(data);
-            return data;
-        },
-    });
 
     const handleAddToCart = item => {
         if (user && user?.email) {
@@ -99,7 +85,6 @@ const SingleFood = () => {
                 userPhoto: user?.photoURL,
                 comment: data.comment
             }
-            console.log(review)
             fetch(`${import.meta.env.VITE_APP_API_URL}/product-review`, {
                 method: 'POST',
                 headers: {
@@ -113,10 +98,7 @@ const SingleFood = () => {
                     reviewRefetch()
                     Swal.fire({
                         position: 'top-end',
-                        icon: 'success',
-                        title: 'Comment added',
-                        showConfirmButton: false,
-                        timer: 1500
+                        title: 'Comment Done',
                     })
                 }
             })
@@ -229,33 +211,42 @@ const SingleFood = () => {
                         </form>
                     </div>
                     <ul className="review-items">
-                        {reviews.length > 0 ?
-                            reviews?.map(review =>
-                                <li key={review?._id}
-                                    className='flex items-start gap-5 my-5'
-                                >
-                                    <div>
-                                        {review?.userPhoto ?
-                                            <img
-                                                className='rounded-full w-16'
-                                                src={review?.userPhoto} alt="" srcSet="" />
-                                            :
-                                            <FcManager className="text-6xl  rounded-full" />
-                                        }
-                                    </div>
-                                    <div>
-                                        <div className=''>
-                                            <h4>{review?.userName}</h4>
-                                            <p className='text-sm mt-1  text-[#808080] '>{review?.date}</p>
-                                            <p className='mt-2'>
-                                                {review?.comment}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </li>)
-                            :
-                            <h2 className='text-4xl text-center mb-5'>There no review</h2>
+                        {
+                            reviewLoading ?
+                                <Loading />
+                                :
+                                <>
+                                    {productReview.length > 0 ?
+                                        productReview?.map(review =>
+                                            <li key={review?._id}
+                                                className='flex items-start gap-5 my-5'
+                                            >
+                                                <div>
+                                                    {review?.userPhoto ?
+                                                        <img
+                                                            className='rounded-full w-16'
+                                                            src={review?.userPhoto} alt="" srcSet="" />
+                                                        :
+                                                        <FcManager className="text-6xl  rounded-full" />
+                                                    }
+                                                </div>
+                                                <div>
+                                                    <div className=''>
+                                                        <h4>{review?.userName}</h4>
+                                                        <p className='text-sm mt-1  text-[#808080] '>{review?.date}</p>
+                                                        <p className='mt-2'>
+                                                            {review?.comment}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>)
+                                        :
+                                        <h2 className='text-4xl text-center mb-5'>There are no review</h2>
+                                    }
+                                </>
+
                         }
+
                     </ul>
                 </div>
             </div>

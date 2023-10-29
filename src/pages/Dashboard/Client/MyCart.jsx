@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useCart from '../../../hooks/useCart';
-import { addToCart, removeFromCart, removeOneProduct } from '../../../redux/features/cart/cartSlice';
+import { addToCart, removeOneProduct } from '../../../redux/features/cart/cartSlice';
 const MyCart = () => {
 
     const [cart, refetch] = useCart()
@@ -44,7 +44,7 @@ const MyCart = () => {
     };
 
     console.log(products, totalPrice)
-    
+
     return (
         <div className='w-full'>
             <Helmet>
@@ -77,7 +77,7 @@ const MyCart = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {products?.map((item, index) =>
+                        {cart?.map((item, index) =>
                             <tr key={item?._id}>
                                 <td>
                                     {index + 1}
@@ -114,8 +114,8 @@ const MyCart = () => {
                                 <td className='text-end'>${item?.price}</td>
                                 <td className='text-end'>
                                     <IconButton
-                                        // onClick={() => handleDelete(item)}
-                                        onClick={() => dispatch(removeFromCart(item))}
+                                        onClick={() => handleDelete(item)}
+                                        // onClick={() => dispatch(removeFromCart(item))}
                                         size='sm'
                                         aria-label='Add to friends'
                                         icon={<DeleteIcon />}

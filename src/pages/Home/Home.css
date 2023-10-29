@@ -1,3 +1,23 @@
+.hero-area ul.slick-dots {
+  display: block !important;
+  bottom: 50px;
+}
+.hero-area .slick-dots li button {
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+  background: #fff;
+}
+.hero-area .slick-dots li {
+  width: 10px;
+  height: 10px;
+}
+.hero-area li.slick-active button {
+  background: #ffc222 !important;
+}
+.hero-area .slick-dots li button:before {
+  opacity: 0 !important;
+}
 .featured-item {
   background-image: url("../../assets/home/feature_bg.png");
   background-size: cover;

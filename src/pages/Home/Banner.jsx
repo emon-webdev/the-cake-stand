@@ -11,7 +11,7 @@ const Banner = () => {
 
 
   const settings = {
-    dots: false,
+    dots: true,
     accessibility: false,
     infinite: true,
     speed: 1500,

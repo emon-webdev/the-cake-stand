@@ -1,3 +1,4 @@
+import { Spinner } from '@chakra-ui/react';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
@@ -8,16 +9,17 @@ import cat_img_1 from '../../assets/item-img/category3.png';
 import cat_img_2 from '../../assets/item-img/category5.png';
 import cat_img_3 from '../../assets/item-img/category7.png';
 import Loading from '../../components/Loading';
-import useMenu from '../../hooks/useMenu';
+import { useGetProductsQuery } from '../../redux/api/apiSlice';
 const Items = () => {
-    const [menu, loading] = useMenu();
+    const { data: products, isLoading } = useGetProductsQuery(undefined)
+    // const [menu, loading] = useMenu();
 
-    const desserts = menu.filter((item) => item.category === "dessert");
-    const soup = menu.filter((item) => item.category === "soup");
-    const salad = menu.filter((item) => item.category === "salad");
-    const pizza = menu.filter((item) => item.category === "pizza");
-    const drinks = menu.filter((item) => item.category === "drinks");
-    if (loading) {
+    const desserts = products?.filter((item) => item.category === "dessert");
+    const soup = products?.filter((item) => item.category === "soup");
+    const salad = products?.filter((item) => item.category === "salad");
+    const pizza = products?.filter((item) => item.category === "pizza");
+    const drinks = products?.filter((item) => item.category === "drinks");
+    if (isLoading) {
         <Loading />
     }
     const settings = {
@@ -72,8 +74,16 @@ const Items = () => {
                             >
                                 <div className="product-cat-caption text-white">
                                     <h4 className='font-bold'>Burger</h4>
-                                    <span className="">{salad.length}</span>
-                                    <span className=""> products</span>
+                                    <div className="flex items-center mt-1">
+                                        {isLoading ?
+                                            <Spinner size='sm' color='white.500' />
+                                            :
+                                            <span className="">
+                                                {salad?.length} products
+                                            </span>
+                                        }
+                                    </div>
+
                                 </div>
                                 <div className="category-product-img">
                                     <img
@@ -91,8 +101,15 @@ const Items = () => {
                             >
                                 <div className="product-cat-caption text-white">
                                     <h4 className='font-bold'>Pizza</h4>
-                                    <span className="">{pizza.length}</span>
-                                    <span className=""> products</span>
+                                    <div className="flex items-center mt-1">
+                                        {isLoading ?
+                                            <Spinner size='sm' color='white.500' />
+                                            :
+                                            <span className="">
+                                                {pizza?.length} products
+                                            </span>
+                                        }
+                                    </div>
                                 </div>
                                 <div className="category-product-img">
                                     <img
@@ -110,8 +127,15 @@ const Items = () => {
                             >
                                 <div className="product-cat-caption text-white">
                                     <h4 className='font-bold'>Meat Box</h4>
-                                    <span className="">{drinks.length}</span>
-                                    <span className=""> products</span>
+                                    <div className="flex items-center mt-1">
+                                        {isLoading ?
+                                            <Spinner size='sm' color='white.500' />
+                                            :
+                                            <span className="">
+                                                {drinks?.length} products
+                                            </span>
+                                        }
+                                    </div>
                                 </div>
                                 <div className="category-product-img">
                                     <img
@@ -129,8 +153,15 @@ const Items = () => {
                             >
                                 <div className="product-cat-caption text-white">
                                     <h4 className='font-bold'>Cake</h4>
-                                    <span className="">{desserts.length}</span>
-                                    <span className=""> products</span>
+                                    <div className="flex items-center mt-1">
+                                        {isLoading ?
+                                            <Spinner size='sm' color='white.500' />
+                                            :
+                                            <span className="">
+                                                {desserts?.length} products
+                                            </span>
+                                        }
+                                    </div>
                                 </div>
                                 <div className="category-product-img">
                                     <img
@@ -148,8 +179,15 @@ const Items = () => {
                             >
                                 <div className="product-cat-caption text-white">
                                     <h4 className='font-bold'>French Fries</h4>
-                                    <span className="">{soup.length}</span>
-                                    <span className=""> products</span>
+                                    <div className="flex items-center mt-1">
+                                        {isLoading ?
+                                            <Spinner size='sm' color='white.500' />
+                                            :
+                                            <span className="">
+                                                {soup?.length} products
+                                            </span>
+                                        }
+                                    </div>
                                 </div>
                                 <div className="category-product-img">
                                     <img
@@ -167,8 +205,15 @@ const Items = () => {
                             >
                                 <div className="product-cat-caption text-white">
                                     <h4 className='font-bold'>Pizza</h4>
-                                    <span className="">{pizza.length}</span>
-                                    <span className=""> products</span>
+                                    <div className="flex items-center mt-1">
+                                        {isLoading ?
+                                            <Spinner size='sm' color='white.500' />
+                                            :
+                                            <span className="">
+                                                {pizza?.length} products
+                                            </span>
+                                        }
+                                    </div>
                                 </div>
                                 <div className="category-product-img">
                                     <img
