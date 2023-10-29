@@ -29,18 +29,14 @@ const AddItem = () => {
                     const { name, price, category, recipe } = data;
                     const newItem = { name, price: parseFloat(price), category, recipe, image: imgURL }
                     console.log(newItem)
-
                     axiosSecure.post('/menu', newItem)
                         .then(data => {
                             console.log('After posting new menu item', data)
                             if (data.data.insertedId) {
                                 reset()
                                 Swal.fire({
-                                    position: 'top-end',
                                     icon: 'success',
                                     title: 'Item added successfully',
-                                    showConfirmButton: false,
-                                    timer: 1500
                                 })
                             }
                         })
@@ -67,7 +63,7 @@ const AddItem = () => {
                             className="input input-bordered  w-full"
                         />
                     </div>
-                    
+
                     <div className='md:flex items-center gap-4'>
                         <div className="form-control w-full">
                             <label className="label">

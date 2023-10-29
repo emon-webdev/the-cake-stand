@@ -3,30 +3,35 @@ import { format } from 'date-fns';
 import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { FcManager } from 'react-icons/fc';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLoaderData, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useCart from '../../hooks/useCart';
 import { AuthContext } from '../../providers/AuthProvider';
-import { addToCart } from '../../redux/features/cart/cartSlice';
+import { useGetSingleProductsQuery } from '../../redux/api/apiSlice';
 const SingleFood = () => {
+    let image, price, recipe, name, _id, category
+    const { id } = useParams()
+    const { data: item, isLoading: loading, error } = useGetSingleProductsQuery(id)
+    
+    // const item = useLoaderData()
+    // const { image, price, recipe, category, name, _id } = item;
+
+    if (!loading) {
+        ({ image, price, recipe, category, name, _id } = item);
+    }
+
     const {
         register,
         handleSubmit,
         reset,
         formState: { errors },
     } = useForm();
-    const item = useLoaderData()
-    const { image, price, recipe, name, _id } = item;
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
     const location = useLocation()
     const [, refetch] = useCart()
     const currentDate = new Date();
     const formattedDate = format(currentDate, 'MMMM d, yyyy');
-
-    const { products, totalPrice } = useSelector((state) => state.cart)
-    const dispatch = useDispatch()
 
     const {
         data: reviews = [],
@@ -44,53 +49,50 @@ const SingleFood = () => {
     });
 
     const handleAddToCart = item => {
-
-        dispatch(addToCart(item))
-        Swal.fire({
-            icon: 'success',
-            title: 'Food added on the cart',
-        })
-
-        // if (user && user?.email) {
-        //     const cartItem = {
-        //         menuItemId: _id, name, image, price, email: user?.email
-        //     }
-        //     fetch(`${import.meta.env.VITE_APP_API_URL}/carts`, {
-        //         method: 'POST',
-        //         headers: {
-        //             'content-type': 'application/json'
-        //         },
-        //         body: JSON.stringify(cartItem)
-        //     }).then(res => res.json()).then(data => {
-        //         if (data.insertedId) {
-        //             refetch() // refetch cart to update the cart number
-        //             Swal.fire({
-        //                 icon: 'success',
-        //                 title: 'Food added on the cart'
-        //             })
-        //         }
-        //     })
-        // } else {
-        //     Swal.fire({
-        //         title: 'Please login to order the food?',
-        //         icon: 'warning',
-        //         showCancelButton: true,
-        //         confirmButtonColor: '#3085d6',
-        //         cancelButtonColor: '#d33',
-        //         confirmButtonText: 'Login Now'
-        //     }).then((result) => {
-        //         if (result.isConfirmed) {
-        //             navigate('/login', { state: { from: location } })
-        //         }
-        //     })
-        // }
+        if (user && user?.email) {
+            const cartItem = {
+                menuItemId: item?._id,
+                name,
+                image,
+                price,
+                email: user?.email
+            }
+            fetch(`${import.meta.env.VITE_APP_API_URL}/carts`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(cartItem)
+            }).then(res => res.json()).then(data => {
+                if (data.insertedId) {
+                    refetch() // refetch cart to update the cart number
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Food added on the cart'
+                    })
+                }
+            })
+        } else {
+            Swal.fire({
+                title: 'Please login to order the food?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Login Now'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login', { state: { from: location } })
+                }
+            })
+        }
 
     }
     const handleComment = data => {
         if (user && user?.email) {
             const review = {
                 name,
-                productId: _id,
+                productId: item?._id,
                 date: formattedDate,
                 userName: user?.displayName,
                 userEmail: user?.email,
@@ -141,24 +143,24 @@ const SingleFood = () => {
                         className="single-page-img shadow-md p-8 bg-[#fff8e8] rounded-lg  md:basis-5/12 mb-5">
                         <img
                             className='rounded-2xl w-full h-full'
-                            src={item?.image} alt="" srcSet="" />
+                            src={image} alt="" srcSet="" />
                     </div>
                     <div
                         data-aos="fade-right"
                         className="banner-content md:basis-6/12">
-                        <h4 className="text-[#ffc222] text-3xl mb-1">{item?.name}</h4>
+                        <h4 className="text-[#ffc222] text-3xl mb-1">{name}</h4>
                         <h2 className=' mb-4 text-xl'>
-                            Category: {item?.category}
+                            Category: {category}
                         </h2>
 
                         <p className='text-md mb-2  text-[#808080] '>
-                            {item?.recipe}
+                            {recipe}
                         </p>
                         <h4
                             className="text-[#ffc222] text-3xl mb-1">
-                            $ {item?.price}
+                            $ {price}
                             <span className='line-through ml-3 text-[#808080]'>
-                                $ {Math.ceil(item?.price * 1.05)}
+                                $ {Math.ceil(price * 1.05)}
                             </span>
                         </h4>
                         <div className="divider my-2"></div>
@@ -256,8 +258,6 @@ const SingleFood = () => {
                         }
                     </ul>
                 </div>
-
-
             </div>
         </div>
     );

@@ -46,10 +46,10 @@ export const router = createBrowserRouter([
         element: <Menu />,
       },
       {
-        path: "/menu/:id",
+        path: "/products/:id",
         element: <SingleFood />,
-        loader: ({ params }) =>
-          fetch(`${import.meta.env.VITE_APP_API_URL}/menu/${params.id}`),
+        // loader: ({ params }) =>
+        //   fetch(`${import.meta.env.VITE_APP_API_URL}/menu/${params.id}`),
       },
       {
         path: "/order/:category",

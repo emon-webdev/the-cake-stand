@@ -67,7 +67,7 @@ const FoodCard = ({ item }) => {
           </p>
           <Link
             className="primary-btn second-btn"
-            to={`/menu/${_id}`}>
+            to={`/products/${_id}`}>
             Details
           </Link>
           {/* <button

@@ -4,7 +4,6 @@ import FoodCard from "./FoodCard";
 // import required modules
 
 const OrderTab = ({ items }) => {
-
   return (
     <>
       <div>
