@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { BsCartCheck, BsWallet } from 'react-icons/bs';
+import { FcManager } from 'react-icons/fc';
 import { FiPhoneCall } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import Loading from '../../../components/Loading';
@@ -33,7 +34,6 @@ const UserHome = () => {
             return data;
         },
     });
-    console.log(data)
     if (isLoading) {
         <Loading />
     }
@@ -94,9 +94,14 @@ const UserHome = () => {
             </div>
             <div className='md:flex items-start gap-8 md:mt-8 mt-4'>
                 <div className='bg-[#0096dc] mb-3 md:mb-0 h-[290px] transition duration-300 hover:bg-[#cc3433] text-center flex flex-col justify-center w-full max-w-[410px] max-h-[290px] rounded-md md:py-8 py-4 md:px-12 px-8 text-white'>
-                    <img
-                        className='rounded-full mx-auto'
-                        src={user?.photoURL} alt="" srcSet="" />
+
+                    {user?.photoURL ?
+                        <img
+                            className='rounded-full h-20 w-20 mx-auto'
+                            src={user?.photoURL} alt="" srcSet="" />
+                        :
+                        <FcManager className="text-6xl  rounded-full" />
+                    }
                     <h2 className='text-center font-bold text-4xl mt-2'> {user?.displayName}</h2>
                 </div>
                 <div className='bg-[#cc3433] mb-3 md:mb-0 h-[290px] transition duration-300 hover:bg-[#0096dc] text-center flex flex-col justify-center w-full max-w-[410px] max-h-[290px] rounded-md md:py-8 py-4 md:px-12 px-8 text-white'>

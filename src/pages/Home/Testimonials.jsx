@@ -25,12 +25,18 @@ const Testimonials = () => {
           isLoading ?
             <Loading />
             :
-            <Swiper navigation={true} loop={true} modules={[Navigation]} className="mySwiper">
+            <Swiper
+              navigation={true}
+              loop={true}
+              modules={[Navigation]}
+              autoplay={{ delay: 2000 }}
+              speed={1000}
+              className="mySwiper">
               {reviews?.slice(0, 7).map((review) => (
                 <SwiperSlide key={review?._id}>
                   <div className="flex flex-col text-center items-center px-4 py-8 md:px-16">
                     <img
-                      className="rounded-full mb-2 max-w-[90px]"
+                      className="rounded-full mb-2 max-w-[90px] max-h-[90px]"
                       src={review?.image ? review?.image : reviewIMmg} alt="" srcSet="" />
                     <Rating
                       style={{ maxWidth: 170 }}

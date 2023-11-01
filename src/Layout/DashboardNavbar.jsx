@@ -1,7 +1,7 @@
 import { default as React, useContext, useEffect, useState } from 'react';
 import { BsCart3 } from "react-icons/bs";
 import { FcManager } from "react-icons/fc";
-import { FiSearch, FiSettings } from "react-icons/fi";
+import { FiSettings } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import logo from "../assets/main-logo.png";
 import useAdmin from '../hooks/useAdmin';
@@ -65,14 +65,6 @@ const DashboardNavbar = () => {
                         </div>
                         {/* header right action button */}
                         <div className="header-group-action hidden lg:flex items-center gap-3">
-                            <div className="site-search">
-                                <Link
-                                    className="flex items-center hover:bg-[#ffc222]  justify-center h-[50px] w-[50px] text-center relative leading-[50px] border rounded-full border-[#ffc222]"
-                                    to="/mycart">
-                                    <FiSearch className="text-xl" />
-                                </Link>
-                            </div>
-
                             {user &&
                                 <div className="site-profile">
                                     <Link

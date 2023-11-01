@@ -77,7 +77,7 @@ const MyCart = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {cart?.map((item, index) =>
+                        {products?.map((item, index) =>
                             <tr key={item?._id}>
                                 <td>
                                     {index + 1}
@@ -124,9 +124,6 @@ const MyCart = () => {
                                         color='#fff'
                                         _hover={{ bg: 'green', color: '#fff' }}
                                     />
-                                    {/* <button
-                                        onClick={() => handleDelete(item)}
-                                        className="btn btn-ghost bg-red-500 text-white btn-md"><FaRegTrashAlt /></button> */}
                                 </td>
                             </tr>)}
 

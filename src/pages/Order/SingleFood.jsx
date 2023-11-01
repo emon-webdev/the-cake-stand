@@ -2,24 +2,35 @@ import { format } from 'date-fns';
 import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { FcManager } from 'react-icons/fc';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Loading from '../../components/Loading';
 import useCart from '../../hooks/useCart';
 import { AuthContext } from '../../providers/AuthProvider';
-import { useGetProductReviewQuery, useGetSingleProductsQuery } from '../../redux/api/apiSlice';
+import { useAddProductCommentMutation, useGetProductReviewQuery, useGetSingleProductsQuery } from '../../redux/api/apiSlice';
+import { addToCart } from '../../redux/features/cart/cartSlice';
 const SingleFood = () => {
     let image, price, recipe, name, _id, category
     const { id } = useParams()
     const { data: item, isLoading: loading } = useGetSingleProductsQuery(id)
-    const { data: productReview, isLoading: reviewLoading, refetch: reviewRefetch } = useGetProductReviewQuery(id)
+    const {
+        data: productReview,
+        isLoading: reviewLoading,
+        refetch: reviewRefetch
+    } = useGetProductReviewQuery(id, {
+        refetchOnMountOrArgChange: true,
+        pollingInterval: 30000
+    })
     // const item = useLoaderData()
     // const { image, price, recipe, category, name, _id } = item;
 
     if (!loading) {
         ({ image, price, recipe, category, name, _id } = item);
     }
-
+    const [addProductComment, { isLoading, isError, isSuccess }] = useAddProductCommentMutation()
+    const { products, totalPrice } = useSelector((state) => state.cart)
+    const dispatch = useDispatch()
     const {
         register,
         handleSubmit,
@@ -34,15 +45,57 @@ const SingleFood = () => {
     const formattedDate = format(currentDate, 'MMMM d, yyyy');
 
 
+    const handleComment = (data) => {
+        if (user && user?.email) {
+            const review = {
+                productId: item?._id,
+                date: formattedDate,
+                userName: user?.displayName,
+                userEmail: user?.email,
+                userPhoto: user?.photoURL,
+                comment: data.comment
+            }
+            addProductComment(review)
+            if (!isSuccess) {
+                refetch()
+                reset()
+                reviewRefetch()
+                Swal.fire({
+                    title: 'Comment Done',
+                })
+            }
+        } else {
+            Swal.fire({
+                title: 'Please login for the comment',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Login Now'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login', { state: { from: location } })
+                }
+            })
+        }
+    }
+
+
     const handleAddToCart = item => {
+
+        dispatch(addToCart(item))
+        console.log(dispatch(addToCart(item)))
+
+
         if (user && user?.email) {
             const cartItem = {
                 menuItemId: item?._id,
-                name,
-                image,
-                price,
+                name: item?.name,
+                image: item?.image,
+                price: item?.price,
                 email: user?.email
             }
+            console.log(cartItem)
             fetch(`${import.meta.env.VITE_APP_API_URL}/carts`, {
                 method: 'POST',
                 headers: {
@@ -51,7 +104,7 @@ const SingleFood = () => {
                 body: JSON.stringify(cartItem)
             }).then(res => res.json()).then(data => {
                 if (data.insertedId) {
-                    refetch() // refetch cart to update the cart number
+                    refetch()
                     Swal.fire({
                         icon: 'success',
                         title: 'Food added on the cart'
@@ -72,51 +125,10 @@ const SingleFood = () => {
                 }
             })
         }
+    }
 
-    }
-    const handleComment = data => {
-        if (user && user?.email) {
-            const review = {
-                name,
-                productId: item?._id,
-                date: formattedDate,
-                userName: user?.displayName,
-                userEmail: user?.email,
-                userPhoto: user?.photoURL,
-                comment: data.comment
-            }
-            fetch(`${import.meta.env.VITE_APP_API_URL}/product-review`, {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(review)
-            }).then(res => res.json()).then(data => {
-                if (data.insertedId) {
-                    refetch()
-                    reset()
-                    reviewRefetch()
-                    Swal.fire({
-                        position: 'top-end',
-                        title: 'Comment Done',
-                    })
-                }
-            })
-        } else {
-            Swal.fire({
-                title: 'Please login for the comment',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Login Now'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    navigate('/login', { state: { from: location } })
-                }
-            })
-        }
-    }
+    console.log(products)
+
     return (
         <div className='single-page'>
             <div className="container">
@@ -170,6 +182,7 @@ const SingleFood = () => {
                                 </ButtonGroup> */}
                             </div>
                             <button
+                                // onClick={() => dispatch(addToCart(item))}
                                 onClick={() => handleAddToCart(item)}
                                 className="primary-btn second-btn">
                                 Add to Cart
@@ -183,7 +196,7 @@ const SingleFood = () => {
                     <h2 className='text-3xl text-center mb-5'>Ratings & Reviews of <span className='text-[#ffc222]'>{item?.name}</span> </h2>
                     <div className="author-info flex items-center gap-4 py-4">
                         <img
-                            className='rounded-full w-20'
+                            className='rounded-full w-20 h-20'
                             src={user?.photoURL} alt="" srcSet="" />
                         <h2 className='text-[#ffc222] text-3xl mb-1'>{user?.displayName}</h2>
                     </div>
@@ -224,7 +237,7 @@ const SingleFood = () => {
                                                 <div>
                                                     {review?.userPhoto ?
                                                         <img
-                                                            className='rounded-full w-16'
+                                                            className='rounded-full w-16 h-16'
                                                             src={review?.userPhoto} alt="" srcSet="" />
                                                         :
                                                         <FcManager className="text-6xl  rounded-full" />

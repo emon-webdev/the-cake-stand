@@ -46,7 +46,7 @@ const Login = () => {
       </Helmet>
       {/* <InnerBanner title="Login" colorTitle="Now" /> */}
       <div
-        className="hero min-h-screen bg-base-200"
+        className="hero py-16 min-h-screen bg-base-200"
         style={{
           backgroundImage: `url(${bg})`,
           backgroundPosition: "center",

@@ -6,8 +6,11 @@ import Swal from "sweetalert2";
 import bg from '../../assets/signup.jpg';
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../Shared/SocialLogin";
+const img_hosting_token = import.meta.env.VITE_Image_Upload_Token
+
 // emonhossain71@gamil.com
 const SignUp = () => {
+
   const {
     register,
     handleSubmit,
@@ -18,51 +21,63 @@ const SignUp = () => {
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/"
 
+  const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
+
+
+
   const onSubmit = data => {
-    createUser(data.email, data.password)
-      .then(result => {
-        const loggedUser = result.user;
-        console.log(loggedUser);
-        updateUserProfile(data.name, data.photoURL)
-          .then(() => {
-            console.log('user profile info updated')
-            const saveUser = { name: data.name, email: data?.email }
-            // save database user data
-            fetch(`${import.meta.env.VITE_APP_API_URL}/users`, {
-              method: "POST",
-              headers: {
-                'content-type': 'application/json'
-              },
-              body: JSON.stringify(saveUser)
+    const formData = new FormData();
+    formData.append('image', data.image[0]);
+    fetch(img_hosting_url, {
+      method: 'POST',
+      body: formData
+    })
+      .then(res => res.json())
+      .then(imgResponse => {
+        if (imgResponse.success) {
+          const imgURL = imgResponse.data.display_url
+          // console.log(imgURL)
+
+          createUser(data.email, data.password)
+            .then(result => {
+              const loggedUser = result.user;
+              console.log(loggedUser);
+              updateUserProfile(data.name, imgURL)
+                .then(() => {
+                  console.log('user profile info updated')
+                  const saveUser = { name: data.name, email: data?.email }
+                  // save database user data
+                  fetch(`${import.meta.env.VITE_APP_API_URL}/users`, {
+                    method: "POST",
+                    headers: {
+                      'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
+                  })
+                    .then(res => res.json())
+                    .then(data => {
+                      if (data.insertedId) {
+                        Swal.fire({
+                          position: 'top-center',
+                          icon: 'success',
+                          title: 'User created successfully.',
+                        });
+                        console.log(data)
+                      }
+                    })
+                  reset();
+                  navigate(from, { replace: true });
+                })
+                .catch(error => console.log(error))
             })
-              .then(res => res.json())
-              .then(data => {
-                if (data.insertedId) {
-                  Swal.fire({
-                    position: 'top-center',
-                    icon: 'success',
-                    title: 'User created successfully.',
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
-                }
-              })
-            reset();
-            Swal.fire({
-              position: 'top-center',
-              icon: 'success',
-              title: 'User created successfully.',
-              showConfirmButton: false,
-              timer: 1500
-            });
-            navigate(from, { replace: true });
-          })
-          .catch(error => console.log(error))
+        }
       })
+
+
+
   };
 
-
-
+  // console.log(onSubmits)
 
   return (
     <>
@@ -104,16 +119,15 @@ const SignUp = () => {
               </div>
               <div className="form-control mb-2">
                 <label className="label">
-                  <span className="label-text text-white">Photo URL</span>
+                  <span className="label-text text-white">Photo *</span>
                 </label>
                 <input
-                  type="text"
-                  {...register("photoURL")}
-                  placeholder="Photo URL"
-                  className="input input-bordered"
+                  type="file"
+                  {...register("image", { required: true })}
+                  className="file-input w-full"
                 />
-                {errors.photoURL && (
-                  <span className="text-red-600">Photo URL is required</span>
+                {errors.image && (
+                  <span className="text-red-600">Photo  is required</span>
                 )}
               </div>
               <div className="form-control mb-2">
@@ -164,9 +178,10 @@ const SignUp = () => {
                   </p>
                 )}
                 <label className="label">
-                  <a href="#" className="label-text-alt text-white link link-hover">
+                  <Link to="/"
+                    className="label-text-alt text-white link hover:text-yellow-400 ">
                     Forgot password?
-                  </a>
+                  </Link>
                 </label>
               </div>
               <div className="form-control mt-3">
