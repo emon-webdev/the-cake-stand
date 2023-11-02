@@ -61,8 +61,9 @@ const SignUp = () => {
                           position: 'top-center',
                           icon: 'success',
                           title: 'User created successfully.',
+                          showConfirmButton: false,
+                          timer: 500
                         });
-                        console.log(data)
                       }
                     })
                   reset();

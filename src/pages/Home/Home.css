@@ -23,3 +23,12 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+.scroll-to-top {
+  background-color: #ffc222 !important;
+  border-radius: 6px !important;
+  color: #fff !important;
+  /* padding: 11px 10px !important; */
+}
+button.scroll-to-top svg {
+  margin: 0 auto;
+}

@@ -36,7 +36,7 @@ const Testimonials = () => {
                 <SwiperSlide key={review?._id}>
                   <div className="flex flex-col text-center items-center px-4 py-8 md:px-16">
                     <img
-                      className="rounded-full mb-2 max-w-[90px] max-h-[90px]"
+                      className="rounded-full mb-2 w-[90px] h-[90px]"
                       src={review?.image ? review?.image : reviewIMmg} alt="" srcSet="" />
                     <Rating
                       style={{ maxWidth: 170 }}

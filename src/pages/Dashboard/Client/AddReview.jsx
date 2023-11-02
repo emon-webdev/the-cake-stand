@@ -29,7 +29,13 @@ const AddReview = () => {
             .then((data) => {
                 if (data.insertedId) {
                     reset()
-                    Swal.fire('Review Added Successful')
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `$Review Added Successful`,
+                        showConfirmButton: false,
+                        timer: 500
+                    })
                 }
             });
 

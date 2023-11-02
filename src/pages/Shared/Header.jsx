@@ -9,6 +9,7 @@ import { BsCart3, BsTelephone } from "react-icons/bs";
 import { FcManager } from "react-icons/fc";
 import { FiSearch } from "react-icons/fi";
 import { IoMdLogIn } from "react-icons/io";
+import { useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/main-logo.png";
 import useAdmin from "../../hooks/useAdmin";
@@ -16,6 +17,7 @@ import useCart from "../../hooks/useCart";
 import { AuthContext } from "../../providers/AuthProvider";
 import Navbar2 from "./Navbar2";
 const Header = () => {
+    const { products } = useSelector((state) => state.cart)
     const { user, logOut } = useContext(AuthContext);
     const [cart, refetch] = useCart()
     const [isAdmin] = useAdmin()
@@ -53,6 +55,10 @@ const Header = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
     const [placement, setPlacement] = React.useState('left')
+
+    const quantities = products.reduce((sum, item) => item.quantity + sum, 0)
+
+
     return (
         <div className="header-area">
             <div className="header-top py-3 bg-[#1e1d23]">
@@ -148,7 +154,8 @@ const Header = () => {
                                     className="flex items-center hover:bg-[#ffc222]  justify-center h-[50px] w-[50px] text-center relative leading-[50px] border rounded-full border-[#ffc222]"
                                     to="/mycart">
                                     <BsCart3 className="text-xl" />
-                                    <span className="absolute top-[-20px] right-0">+{cart?.length || 0}</span>
+                                    {/* <span className="absolute top-[-20px] right-0">+{cart?.length || 0}</span> */}
+                                    <span className="absolute top-[-20px] right-0">+{quantities || 0}</span>
                                 </Link>
                             </div>
                                 :
@@ -169,7 +176,8 @@ const Header = () => {
                                     className="z-[0] flex items-center hover:bg-[#ffc222]  justify-center h-[45px] w-[45px] text-center relative leading-[50px] border rounded-full border-[#ffc222]"
                                     to="/mycart">
                                     <BsCart3 className="text-lg" />
-                                    <span className="absolute text-sm top-[-10px] right-0">+{cart?.length || 0}</span>
+                                    {/* <span className="absolute text-sm top-[-10px] right-0">+{cart?.length || 0}</span> */}
+                                    <span className="absolute text-sm top-[-10px] right-0">+{quantities ? quantities : 0}</span>
                                 </Link>}
 
                                 {user &&

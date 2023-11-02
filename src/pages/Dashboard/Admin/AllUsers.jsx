@@ -26,7 +26,7 @@ const AllUsers = () => {
                         icon: 'success',
                         title: `${user?.name} is an Admin Now`,
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 500
                     })
                 }
             })

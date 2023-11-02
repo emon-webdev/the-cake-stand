@@ -2,6 +2,7 @@ import { default as React, useContext, useEffect, useState } from 'react';
 import { BsCart3 } from "react-icons/bs";
 import { FcManager } from "react-icons/fc";
 import { FiSettings } from "react-icons/fi";
+import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import logo from "../assets/main-logo.png";
 import useAdmin from '../hooks/useAdmin';
@@ -10,15 +11,13 @@ import Navbar2 from '../pages/Shared/Navbar2';
 import { AuthContext } from '../providers/AuthProvider';
 
 const DashboardNavbar = () => {
+    const { products, totalPrice } = useSelector((state) => state.cart)
     const { user, logOut } = useContext(AuthContext);
+    const quantities = products.reduce((sum, item) => item.quantity + sum, 0)
     const [cart, refetch] = useCart()
     const [isAdmin] = useAdmin()
     const [isActive, setActive] = useState("false");
-    const handleLogOut = () => {
-        logOut()
-            .then(() => { })
-            .catch(error => console.log(error));
-    }
+
     const [stickyClass, setStickyClass] = useState('');
     const [scrollPosition, setScrollPosition] = useState(0);
     // Sidebar Responsive Handler
@@ -82,7 +81,8 @@ const DashboardNavbar = () => {
                                     className="flex items-center hover:bg-[#ffc222]  justify-center h-[50px] w-[50px] text-center relative leading-[50px] border rounded-full border-[#ffc222]"
                                     to="/mycart">
                                     <BsCart3 className="text-xl" />
-                                    <span className="absolute top-[-20px] right-0">+{cart?.length || 0}</span>
+                                    {/* <span className="absolute top-[-20px] right-0">+{cart?.length || 0}</span> */}
+                                    <span className="absolute top-[-20px] right-0">+{quantities || 0}</span>
                                 </Link>
                             </div>
                         </div>

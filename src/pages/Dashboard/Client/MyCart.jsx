@@ -6,15 +6,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useCart from '../../../hooks/useCart';
-import { addToCart, removeOneProduct } from '../../../redux/features/cart/cartSlice';
+import { addToCart, removeFromCart, removeOneProduct } from '../../../redux/features/cart/cartSlice';
 const MyCart = () => {
 
     const [cart, refetch] = useCart()
     const total = cart.reduce((sum, item) => item.price + sum, 0)
-    const { products, totalPrice } = useSelector((state) => state.cart)
+    const { products, totalPrice, totalQuantity } = useSelector((state) => state.cart)
     const dispatch = useDispatch()
 
     const handleDelete = (item) => {
+        dispatch(removeFromCart(item))
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -43,7 +44,8 @@ const MyCart = () => {
         })
     };
 
-    console.log(products, totalPrice)
+    const quantities = products.reduce((sum, item) => item.quantity + sum, 0)
+    console.log(totalQuantity);
 
     return (
         <div className='w-full'>
@@ -51,16 +53,16 @@ const MyCart = () => {
                 <title>THE CAKE STAND || My Cart</title>
             </Helmet>
             <div className='uppercase py-4 mb-2 font-bold md:flex justify-evenly items-center'>
-                <h3 className='text-3xl'>Items: {cart?.length}</h3>
+                <h3 className='text-3xl'>Items: {quantities}</h3>
                 <h3 className='text-3xl my-3 md:my-0'>
-                    Price: $ {total.toFixed(2)}
+                    Price: $ {totalPrice.toFixed(2)}
                 </h3>
 
                 <Link to='/payment'>
                     <button className="btn btn-md bg-warning">Pay</button>
                 </Link>
             </div>
-            $ {totalPrice.toFixed(2)}
+
             <div className="overflow-x-auto md:w-full w-[350px]">
                 <table className="table">
                     {/* head */}
@@ -115,7 +117,7 @@ const MyCart = () => {
                                 <td className='text-end'>
                                     <IconButton
                                         onClick={() => handleDelete(item)}
-                                        // onClick={() => dispatch(removeFromCart(item))}
+
                                         size='sm'
                                         aria-label='Add to friends'
                                         icon={<DeleteIcon />}

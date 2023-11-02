@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { FcManager } from 'react-icons/fc';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Loading from '../../components/Loading';
@@ -29,7 +29,6 @@ const SingleFood = () => {
         ({ image, price, recipe, category, name, _id } = item);
     }
     const [addProductComment, { isLoading, isError, isSuccess }] = useAddProductCommentMutation()
-    const { products, totalPrice } = useSelector((state) => state.cart)
     const dispatch = useDispatch()
     const {
         register,
@@ -62,6 +61,8 @@ const SingleFood = () => {
                 reviewRefetch()
                 Swal.fire({
                     title: 'Comment Done',
+                    showConfirmButton: false,
+                    timer: 500
                 })
             }
         } else {
@@ -82,11 +83,7 @@ const SingleFood = () => {
 
 
     const handleAddToCart = item => {
-
         dispatch(addToCart(item))
-        console.log(dispatch(addToCart(item)))
-
-
         if (user && user?.email) {
             const cartItem = {
                 menuItemId: item?._id,
@@ -95,7 +92,6 @@ const SingleFood = () => {
                 price: item?.price,
                 email: user?.email
             }
-            console.log(cartItem)
             fetch(`${import.meta.env.VITE_APP_API_URL}/carts`, {
                 method: 'POST',
                 headers: {
@@ -107,7 +103,9 @@ const SingleFood = () => {
                     refetch()
                     Swal.fire({
                         icon: 'success',
-                        title: 'Food added on the cart'
+                        title: 'Food added on the cart',
+                        showConfirmButton: false,
+                        timer: 500
                     })
                 }
             })
@@ -127,7 +125,6 @@ const SingleFood = () => {
         }
     }
 
-    console.log(products)
 
     return (
         <div className='single-page'>
@@ -159,8 +156,8 @@ const SingleFood = () => {
                         </h4>
                         <div className="divider my-2"></div>
                         <div className="single-item-action flex items-center gap-4 text-center">
-                            <div className="quantity-btn flex items-center">
-                                {/* <ButtonGroup size='sm' isAttached variant='outline'>
+                            {/* <div className="quantity-btn flex items-center">
+                                <ButtonGroup size='sm' isAttached variant='outline'>
                                     <IconButton
                                         onClick={() => dispatch(removeOneProduct(item))}
                                         aria-label='Add to friends'
@@ -174,13 +171,8 @@ const SingleFood = () => {
                                         aria-label='Add to friends'
                                         icon={<AddIcon />}
                                     />
-                                    <IconButton
-                                        onClick={() => dispatch(removeFromCart(item))}
-                                        aria-label='Add to friends'
-                                        icon={<DeleteIcon />}
-                                    />
-                                </ButtonGroup> */}
-                            </div>
+                                </ButtonGroup>
+                            </div> */}
                             <button
                                 // onClick={() => dispatch(addToCart(item))}
                                 onClick={() => handleAddToCart(item)}

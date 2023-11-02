@@ -36,6 +36,8 @@ const AddItem = () => {
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'Item added successfully',
+                                    showConfirmButton: false,
+                                    timer: 500
                                 })
                             }
                         })
