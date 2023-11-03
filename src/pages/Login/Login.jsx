@@ -26,12 +26,8 @@ const Login = () => {
       console.log(user);
       Swal.fire({
         title: "User Login Successfull",
-        showClass: {
-          popup: "animate__animated animate__fadeInDown",
-        },
-        hideClass: {
-          popup: "animate__animated animate__fadeOutUp",
-        },
+        showConfirmButton: false,
+        timer: 500
       });
       navigate(from, { replace: true });
 

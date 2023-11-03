@@ -6,9 +6,9 @@ Live Website[https://the-cake-stand.web.app/](https://the-cake-stand.web.app/)<b
 Server URL[https://the-cake-stand-server.vercel.app/](https://the-cake-stand-server.vercel.app/)
 
 Admin Email: <admin@gmail.com><br>
-Admin Password: <admin@gmail.com><br><br>
+Admin Password: <!1TCSAdmin><br><br>
 User Email: <user@gmail.com><br>
-User Password: <user@gmail.com>
+User Password: <!1TCSUser>
 
 # Technology & Package
 
@@ -42,13 +42,27 @@ User Password: <user@gmail.com>
 - User, Admin Role set
   -Technology: React, Redux-Toolkit, Tailwind, MongoDB, Mongoose, Express.js, Node.js, Private route, 2 Type Role, Firebase Authentication, etc
 
-### `npm start`
+### `Photo Gallery`
 
 Runs the app in the development mode.\
 Open [https://the-cake-stand.web.app/](https://the-cake-stand.web.app/) to view it in your browser.
 
+#### Home Page
+
 <img src="./src/assets/readme/home.png" alt="GitHub Banner" width="100%" height="auto">
+
+#### Admin Page
+
 <img src="./src/assets/readme/admin.png" alt="GitHub Banner" width="100%" height="auto">
+
+#### User Page
+
 <img src="./src/assets/readme/user.png" alt="GitHub Banner" width="100%" height="auto">
+
+#### My Cart Page
+
 <img src="./src/assets/readme/cart.png" alt="GitHub Banner" width="100%" height="auto">
+
+#### All User Page
+
 <img src="./src/assets/readme/all_user.png" alt="GitHub Banner" width="100%" height="auto">
