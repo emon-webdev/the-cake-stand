@@ -5,13 +5,12 @@ import { Helmet } from 'react-helmet-async';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import useCart from '../../../hooks/useCart';
 import { addToCart, removeFromCart, removeOneProduct } from '../../../redux/features/cart/cartSlice';
 const MyCart = () => {
 
-    const [cart, refetch] = useCart()
-    const total = cart.reduce((sum, item) => item.price + sum, 0)
-    const { products, totalPrice, totalQuantity } = useSelector((state) => state.cart)
+    // const [cart, refetch] = useCart()
+    // const total = cart.reduce((sum, item) => item.price + sum, 0)
+    const { products, totalPrice } = useSelector((state) => state.cart)
     const dispatch = useDispatch()
 
     const handleDelete = (item) => {
@@ -45,8 +44,7 @@ const MyCart = () => {
     };
 
     const quantities = products.reduce((sum, item) => item.quantity + sum, 0)
-    console.log("totalQuantity", totalQuantity);
-    console.log('quantities', quantities);
+
 
     return (
         <div className='w-full'>

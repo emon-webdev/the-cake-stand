@@ -30,7 +30,6 @@ const AddItem = () => {
                     const newItem = { name, price: parseFloat(price), category, recipe, image: imgURL }
                     axiosSecure.post('/products', newItem)
                         .then(data => {
-                            console.log('After posting new menu item', data)
                             if (data.data.insertedId) {
                                 reset()
                                 Swal.fire({

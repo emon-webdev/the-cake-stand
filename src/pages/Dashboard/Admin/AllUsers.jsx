@@ -13,7 +13,6 @@ const AllUsers = () => {
     })
 
     const handleMakeAdmin = (user) => {
-        console.log(user)
         fetch(`${import.meta.env.VITE_APP_API_URL}/users/admin/${user?._id}`, {
             method: 'PATCH',
         })

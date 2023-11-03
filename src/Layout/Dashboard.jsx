@@ -16,11 +16,7 @@ const Dashboard = () => {
     // const isAdmin = true ;
     const [isAdmin] = useAdmin()
     const { user, logOut } = useContext(AuthContext);
-    const handleLogOut = () => {
-        logOut()
-            .then(() => { })
-            .catch(error => console.log(error));
-    }
+
 
     return (
         <div>

@@ -15,7 +15,6 @@ const Demo = () => {
     // const onSubmit = data => {
     //     const { category, details, } = data;
     //     const newReview = { name: user?.displayName, email: user?.email, image: user?.photoURL, rating, category, details, }
-    //     console.log(newReview)
 
     //     fetch(`${import.meta.env.VITE_APP_API_URL}/review`, {
     //         method: "POST",

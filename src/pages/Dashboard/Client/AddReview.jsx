@@ -16,7 +16,6 @@ const AddReview = () => {
     const onSubmit = data => {
         const { category, suggest, details, } = data;
         const newReview = { name: user?.displayName, email: user?.email, image: user?.photoURL, rating, category, suggest, details, }
-        console.log(newReview)
 
         fetch(`${import.meta.env.VITE_APP_API_URL}/review`, {
             method: "POST",

@@ -36,15 +36,12 @@ const SignUp = () => {
       .then(imgResponse => {
         if (imgResponse.success) {
           const imgURL = imgResponse.data.display_url
-          // console.log(imgURL)
 
           createUser(data.email, data.password)
             .then(result => {
               const loggedUser = result.user;
-              console.log(loggedUser);
               updateUserProfile(data.name, imgURL)
                 .then(() => {
-                  console.log('user profile info updated')
                   const saveUser = { name: data.name, email: data?.email }
                   // save database user data
                   fetch(`${import.meta.env.VITE_APP_API_URL}/users`, {
@@ -78,7 +75,6 @@ const SignUp = () => {
 
   };
 
-  // console.log(onSubmits)
 
   return (
     <>

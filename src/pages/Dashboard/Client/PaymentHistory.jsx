@@ -19,7 +19,6 @@ const PaymentHistory = () => {
             return data;
         },
     });
-    console.log(data)
     if (isLoading) {
         <p><Loading /></p>
     }

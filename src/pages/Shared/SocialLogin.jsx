@@ -15,7 +15,6 @@ const SocialLogin = () => {
         googleSignIn()
             .then(result => {
                 const loggedInUser = result.user
-                console.log(loggedInUser)
 
                 const saveUser = {
                     name: loggedInUser?.displayName,
@@ -32,7 +31,6 @@ const SocialLogin = () => {
                 })
                     .then(res => res.json())
                     .then(() => {
-                        console.log('post social ')
                         navigate(from, { replace: true });
                         // navigate("/");
                     })

@@ -27,13 +27,10 @@ const Reservation = () => {
             return data;
         },
     });
-    console.log(reservation)
 
     const onSubmit = data => {
-        console.log(data)
         const { guest, email, name, phone } = data;
         const newReservation = { selectedDate, startTime, endTime, name, email, phone, guest }
-        console.log(newReservation)
 
         fetch(`${import.meta.env.VITE_APP_API_URL}/reservation`, {
             method: "POST",

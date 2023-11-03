@@ -20,7 +20,6 @@ const ManageBooking = () => {
             return data;
         },
     });
-    console.log(reservation)
 
     return (
         <div className='w-full'>
