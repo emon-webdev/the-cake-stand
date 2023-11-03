@@ -30,10 +30,13 @@ User Password: <user@gmail.com>
 - Users need to login via Google (also can create a new Account).
 - Have an Admin , User, User dashboard, Admin dashboard, Admin can delete, add, manage products etc...
 - Dynamic Route
+- Dynamic TESTIMONIALS
+- Add a Single Product review
+- Add a service review
 - Backend data fetch
-- categories wisee second-hand product selected
+- categories products
 - On clicking the Book now button
-- Add A Product
+- Add A Food
 - 404 page (not found page).
 - User, Admin different route
 - User, Admin Role set
@@ -46,6 +49,6 @@ Open [https://the-cake-stand.web.app/](https://the-cake-stand.web.app/) to view 
 
 <img src="./src/assets/readme/home.png" alt="GitHub Banner" width="100%" height="auto">
 <img src="./src/assets/readme/admin.png" alt="GitHub Banner" width="100%" height="auto">
-<img src="./src/assets/readme/home.png" alt="GitHub Banner" width="100%" height="auto">
+<img src="./src/assets/readme/user.png" alt="GitHub Banner" width="100%" height="auto">
 <img src="./src/assets/readme/cart.png" alt="GitHub Banner" width="100%" height="auto">
 <img src="./src/assets/readme/all_user.png" alt="GitHub Banner" width="100%" height="auto">
