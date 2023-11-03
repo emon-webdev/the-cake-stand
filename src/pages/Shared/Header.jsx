@@ -7,7 +7,6 @@ import {
 import React, { useContext, useEffect, useState } from "react";
 import { BsCart3, BsTelephone } from "react-icons/bs";
 import { FcManager } from "react-icons/fc";
-import { FiSearch } from "react-icons/fi";
 import { IoMdLogIn } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -122,7 +121,7 @@ const Header = () => {
                             className="logo ">
                             <Link to="/" className="text-3xl md:w-[85px] w-14 font-bold flex items-center">
                                 <img
-                                    className="md:w-[85px] w-14"
+                                    className="md:w-[75px] w-14"
                                     src={logo} alt="" srcSet="" />
                             </Link>
                         </div>
@@ -132,12 +131,12 @@ const Header = () => {
                         </div>
                         {/* header right action button */}
                         <div className="header-group-action hidden lg:flex items-center gap-3">
-                            <div className="site-search">
+                            {/* <div className="site-search">
                                 <button
                                     className="p-0  bg-white border rounded-full hover:bg-[#ffc222] border-[#ffc222] h-[50px] w-[50px] text-center">
                                     <FiSearch className="text-center mx-auto text-xl" />
                                 </button>
-                            </div>
+                            </div> */}
                             {user &&
                                 <div className="site-profile">
                                     <Link

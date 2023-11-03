@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
+import ScrollToTop from "react-scroll-to-top";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import FoodGallery from "../../components/FoodGallery";
@@ -65,6 +66,7 @@ const Order = () => {
         </div>
       </div>
       <FoodGallery />
+      <ScrollToTop smooth />
     </div>
   );
 };

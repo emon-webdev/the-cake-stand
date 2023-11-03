@@ -1,9 +1,37 @@
-# React + Vite
+# Project Name : The-Cake-Stand
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Live Website
 
-Currently, two official plugins are available:
+Live Website[https://car-showroom-520ff.web.app/](https://car-showroom-520ff.web.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# the-cake-stand
+adminEmail: <admin@gmail.com>
+adminPassword: <admin@gmail.com>
+
+sellerEmail: <seller@gmail.com>
+sellerPassword: <seller@gmail.com>
+
+buyerEmail: <buyer@gmail.com>
+buyerPassword: <buyer@gmail.com>
+
+https://car-showroom-520ff.web.app/
+
+# What is works in this project
+
+- React
+- React Router
+- Auth Firebase
+- Daynamic Route
+- Backend data fetch
+- categories wisee second-hand product selected
+- On clicking the Book now button
+- Add A Product
+- 404 page (not found page).
+- buyer, seller, admin different route
+-
+
+### `npm start`
+
+Runs the app in the development mode.\
+Open [https://car-showroom-520ff.web.app/](https://car-showroom-520ff.web.app/) to view it in your browser.
+
+![Github Banner](assets/emonBg.png)

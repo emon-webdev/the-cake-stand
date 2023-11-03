@@ -1,4 +1,5 @@
 import React from 'react';
+import ScrollToTop from 'react-scroll-to-top';
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import FoodGallery from '../../components/FoodGallery';
@@ -111,6 +112,7 @@ const Blog = () => {
                 </div>
             </div>
             <FoodGallery />
+            <ScrollToTop smooth />
         </div>
     );
 };

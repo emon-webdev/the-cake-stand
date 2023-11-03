@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
+import ScrollToTop from "react-scroll-to-top";
 import dessert from "../../assets/menu/dessert-bg.jpeg";
 import pizzaImg from "../../assets/menu/pizza-bg.jpg";
 import saladImg from "../../assets/menu/salad-bg.jpg";
@@ -45,6 +46,7 @@ const Menu = () => {
 
 
       <FoodGallery />
+      <ScrollToTop smooth />
     </div>
   );
 };

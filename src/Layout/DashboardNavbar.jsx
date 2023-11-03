@@ -43,8 +43,8 @@ const DashboardNavbar = () => {
 
 
     return (
-        <div className="header-area dashboard-header">
-            <div className={`md:navbar ${stickyClass} header-main py-3 bg-[#fff]`}>
+        <div className="header-area dashboard-header py-[6px]">
+            <div className={`md:navbar ${stickyClass} header-main py-4 bg-[#fff]`}>
                 <div className="container">
                     <div className="flex w-[100%] justify-between items-center">
                         <div

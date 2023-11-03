@@ -45,7 +45,8 @@ const MyCart = () => {
     };
 
     const quantities = products.reduce((sum, item) => item.quantity + sum, 0)
-    console.log(totalQuantity);
+    console.log("totalQuantity", totalQuantity);
+    console.log('quantities', quantities);
 
     return (
         <div className='w-full'>

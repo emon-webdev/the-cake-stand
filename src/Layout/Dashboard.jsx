@@ -33,7 +33,7 @@ const Dashboard = () => {
                     {/* <label htmlFor="open-dashboard" className="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
                     <Outlet />
                 </div>
-                <div className="drawer-side md:mt-[-72px]">
+                <div className="drawer-side md:mt-[-84px]">
                     <label htmlFor="open-dashboard" className="drawer-overlay"></label>
                     <ul className="menu p-4 pt-2 w-80 min-h-full bg-[#D1A054] text-base-content">
                         <li>
@@ -41,14 +41,14 @@ const Dashboard = () => {
                                 data-aos="zoom-in"
                                 data-aos-duration="500"
                                 className="logo mx-auto p-0 hover:bg-transparent ">
-                                <Link to="/" className="text-3xl md:w-[80px] w-14 font-bold flex items-center">
+                                <Link to="/" className="text-3xl md:w-[75px] w-14 font-bold flex items-center">
                                     <img
-                                        className="md:w-[80px] w-14"
+                                        className="md:w-[70px] w-14"
                                         src={logo} alt="" srcSet="" />
                                 </Link>
                             </div>
                         </li>
-                        <div className="divider mt-1"></div>
+                        <div className="divider mt-[0px]"></div>
                         {
                             isAdmin ?
                                 <>
