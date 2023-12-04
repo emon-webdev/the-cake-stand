@@ -22,7 +22,7 @@ const Blog = () => {
                                     10 Reasons To Do A Digital Detox Challenge
                                 </h3>
                                 <div className="entry-bottom">
-                                    <p className='text-md mb-3'>Ac haca ullamcorper donec ante habi tasse donec imperdiet eturpis varius per a augue magna hac. Nec hac…</p>
+                                    <p className='text-md mb-3'>Ac  ullamcorper donec ante habi tasse donec imperdiet eturpis varius per a augue magna hac. Nec hac.…</p>
                                     <a className="primary-btn second-btn" href="https://demo2.pavothemes.com/poco/10-reasons-to-do-a-digital-detox-challenge/">Read More</a>
                                 </div>
                             </div>
