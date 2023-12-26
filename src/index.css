@@ -4,7 +4,6 @@
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  /* font-family: "Berkshire Swash", cursive; */
   line-height: 1.5;
   font-weight: 400;
 
@@ -14,6 +13,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
 body {
   margin: 0;
   padding: 0;
@@ -23,6 +23,7 @@ body {
 .drawer-side a.active {
   color: #fff;
 }
+
 .drawer-side a {
   background-color: transparent !important;
 }
@@ -30,6 +31,7 @@ body {
 .drawer-side label.drawer-overlay {
   margin-top: 0 !important;
 }
+
 h1,
 h2,
 h3,
@@ -40,11 +42,13 @@ h6 {
   /* font-size: 3.2em; */
   line-height: 1.1;
 }
+
 img {
   height: auto;
   max-width: 100%;
   display: block;
 }
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -56,9 +60,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 .drawer-side label.drawer-overlay {
   margin-top: 0 !important;
 }
+
 .container {
   margin-left: auto;
   margin-right: auto;
@@ -68,6 +74,7 @@ button {
   width: 100%;
   height: auto;
 }
+
 button:hover {
   color: #fff;
   cursor: pointer;
@@ -75,6 +82,7 @@ button:hover {
   transform: translateY(0px);
   box-shadow: none;
 }
+
 .primary-btn {
   display: flex;
   justify-content: center;
@@ -90,10 +98,12 @@ button:hover {
   height: 52px;
   width: 195px;
 }
+
 .primary-btn:hover {
   color: #fff;
   background-color: #000;
 }
+
 .primary-btn.second-btn {
   width: 147px;
   height: 46px !important;
@@ -107,9 +117,11 @@ button:hover {
   background: rgba(255, 255, 255, 1);
   box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 5px 0px;
 }
+
 nav.z-10.md\:hidden.flex.flex-col.justify-between.overflow-x-hidden.bg-white.max-w-\[305px\].space-y-6.px-2.py-4.absolute.inset-y-0.left-0.transform.false.md\:translate-x-0.transition.duration-200.ease-in-out {
   position: static;
 }
+
 label {
   color: transparent;
   font-weight: 300;
@@ -117,26 +129,32 @@ label {
   margin-top: 0 !important;
   display: block;
 }
+
 .swiper-button-prev:after,
 .swiper-button-next:after {
   font-size: 30px;
   color: #ffc222;
 }
+
 .single-item img:hover {
   transform: scale(1.3);
 }
+
 .single-item img {
   overflow: hidden;
   transition: 0.3s;
 }
+
 .gallery-items .slick-track {
   height: 520px;
 }
+
 .gallery-items .slick-track img {
   position: relative !important;
   z-index: 0;
   transition: 0.4s;
 }
+
 .gallery-items .slick-track img::after {
   position: absolute !important;
   content: "";
@@ -148,12 +166,15 @@ label {
   top: 0;
   z-index: 99;
 }
+
 .gallery-items .slick-track img:hover {
   transform: scale(1.2);
 }
+
 .post-thumbnail {
   overflow: hidden;
 }
+
 .post-inner {
   border: 1px solid;
   border-color: #e5e5e5;
@@ -162,6 +183,7 @@ label {
   height: 100%;
   transition: all 0.3s ease;
 }
+
 .post-thumbnail img {
   transition: all 0.3s ease;
 }
@@ -171,16 +193,18 @@ label {
   -webkit-transform: scale(1.2);
   transform: scale(1.2);
 }
+
 .entry-content {
   height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.md\:basis-3\/5.flex.gap-3.justify-center.items-center.w-full.image-box
-  img:hover {
+
+.md\:basis-3\/5.flex.gap-3.justify-center.items-center.w-full.image-box img:hover {
   transform: scale(1.2);
 }
+
 .md\:basis-3\/5.flex.gap-3.justify-center.items-center.w-full.image-box img {
   overflow: hidden;
   transition: 0.3s;
@@ -189,58 +213,71 @@ label {
 .order-food .react-tabs__tab {
   padding: 8px 16px;
 }
+
 .order-food .react-tabs__tab--selected {
   background: #ffc222;
   border-color: #ffc222;
   color: #fff;
 }
+
 .item-group .slick-slide {
   padding: 0 6px;
   height: 130px;
 }
+
 .single-menu-item:hover h2 {
   color: #ffc222;
 }
+
 .product-cat-link:hover .category-product-img img {
   transform: scale(1.1);
 }
+
 .slick-prev,
 .slick-next {
   display: none !important;
 }
+
 .slick-prev:before,
 .slick-next:before {
   display: none !important;
 }
+
 ul.slick-dots {
   display: none !important;
 }
+
 .banner-area {
   background-position: center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
 }
+
 .banner-area.bg-1 {
   background: url("./assets/hero_bg_4.jpg");
 }
+
 .banner-area.bg-2 {
   background: url("./assets/hero_bg_2.jpg");
 }
+
 .banner-area.bg-3 {
   background: url("./assets/hero_bg_3.jpg");
 }
+
 .banner-area.bg-4 {
   background: url("./assets/hero_bg_1.jpg");
 }
+
 .form-control input {
   height: 54px;
 }
+
 /* .drawer-content.h-screen {
   height: 100vh;
 } */
 /* Responsive */
-@media (min-width: 1200px) {
-}
+@media (min-width: 1200px) {}
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .order-food .react-tabs__tab {
@@ -258,6 +295,7 @@ ul.slick-dots {
   .admin-home .recharts-wrapper {
     width: 100% !important;
   }
+
   .admin-home .recharts-wrapper svg {
     width: 100% !important;
   }
@@ -267,9 +305,11 @@ ul.slick-dots {
   .admin-home .recharts-wrapper {
     width: 100% !important;
   }
+
   .admin-home .recharts-wrapper svg {
     width: 100% !important;
   }
+
   .order-food .react-tabs__tab {
     position: inherit;
   }
